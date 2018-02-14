@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="toggle_menubar" mtime="1457294611" type="string">
+		<stringvalue>&lt;Primary&gt;&lt;Shift&gt;h</stringvalue>
+	</entry>
+</gconf>
