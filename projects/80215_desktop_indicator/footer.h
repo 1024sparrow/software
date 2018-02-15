@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class QPaintEvent;
+class QTimerEvent;
 class Footer : public QWidget
 {
     Q_OBJECT
@@ -15,9 +17,19 @@ public slots:
 
 protected:
     void paintEvent(QPaintEvent *pe);
+    void timerEvent(QTimerEvent *te);
+private:
+    void updatePixmaps(); // обновляем данные об используемых рабочих столах
+    static const int MODE_COUNT;
+    static const int POINT_SIZE;
+    static const int animDuration;
 
 private:
-    char m_cur;
+    char m_mode; // текущая группа рабочих столов
+    char m_cur; // текущий рабочий стол
+    QPixmap m_pix[4];
+    int m_currentPix;
+    int animationTimerId;
 };
 
 #endif // FOOTER_H

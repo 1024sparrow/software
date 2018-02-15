@@ -11,4 +11,5 @@ SOURCES += \
     footer.cpp \
     main.cpp \
     tester.cpp \
-    window.cpp
+    window.cpp \
+    footer__update_pixmaps.cpp
