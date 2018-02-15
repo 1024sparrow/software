@@ -16,7 +16,7 @@ struct PointDescr
 };
 
 const int fixedCount = 3; // число рабочих столов, которые не переключаются между группами рабочих столов
-const int pointsMutableBase = 23; // 26 - fixedCount
+const int pointsMutableBaseCount = 23; // 26 - fixedCount
 PointDescr pointsMutableBase[] = {
     {'Q',0,0,0,0},
     {'W',1,1,0,0},
@@ -43,12 +43,12 @@ PointDescr pointsMutableBase[] = {
     {'V',22,4,2,1},
     {'B',23,6,2,2},
     {'N',24,7,2,2}
-    //{'M',25,,2,0},//fixed
+    //{'M',25,9,2,0},//fixed
 };
 PointDescr pointsFixed[] = {
     {'J',16,9,1,0},//fixed
     {'K',17,10,1,0},//fixed
-    {'M',25,,2,0}//fixed
+    {'M',25,9,2,0}//fixed
 };
 
 /*
