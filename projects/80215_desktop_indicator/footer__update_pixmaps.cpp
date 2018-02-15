@@ -69,7 +69,8 @@ void Footer::updatePixmaps()
     if (animationTimerId)
         killTimer(animationTimerId);
 
-    //...
+    //запускаем утилиту "mctrl -l" через QProcess
+    // когда получаем ответ от того процесса, вот этот нижележащий код выполняем
     int w_single = 15 * POINT_SIZE;
     int w = w_single * MODE_COUNT;
     int h = 6 * POINT_SIZE;
