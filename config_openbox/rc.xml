@@ -54,7 +54,7 @@
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
   -->
-    <keepBorder>yes</keepBorder>
+    <keepBorder>no</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
       <name>sans</name>
@@ -180,7 +180,7 @@
      cases. -->
   <margins>
     <top>0</top>
-    <bottom>0</bottom>
+    <bottom>8</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
@@ -384,6 +384,10 @@
       </action>
     </keybind>
     <!-- Keybindings for windows -->
+    <keybind key="W-F8">
+      <action name="ToggleDecorations">
+      </action>
+    </keybind>
     <keybind key="A-F4">
       <action name="Close"/>
     </keybind>
@@ -462,7 +466,8 @@
           <name>x-terminal-emulator</name>
         </startupnotify>
         <!--      <command>x-terminal-emulator</command> -->
-        <command>gnome-terminal --full-screen</command>
+        <!-- <command>gnome-terminal -full-screen</command> -->
+        <command>gnome-terminal</command>
       </action>
     </keybind>
     <keybind key="W-2">
@@ -948,5 +953,17 @@
 
   # end of the example
 -->
+    <application class="*">
+        <!--<maximized>true</maximized>-->
+        <decor>no</decor>
+    </application>
+    <!--<application class="*Fusion-A191*">-->
+    <application type="normal">
+        <maximized>true</maximized>
+    </application>
+    <application name="gimp">
+        <decor>yes</decor>
+        <maximized>false</maximized>
+    </application>
   </applications>
 </openbox_config>
