@@ -2,6 +2,9 @@
 
 #include <QImage>
 #include <QPixmap>
+#include <QProcess>
+#include <QSet>
+#include <QDebug>//
 
 QColor colors[] = {Qt::blue, Qt::green, Qt::yellow, Qt::red};
 
@@ -68,6 +71,61 @@ void Footer::updatePixmaps()
 {
     if (animationTimerId)
         killTimer(animationTimerId);
+
+    QSet<int> usingDesktops;
+    {
+        QProcess *process = new QProcess(this);
+        process->start("wmctrl -l");
+        process->waitForFinished();
+        char string[4096];
+        int bytes;
+        int state;
+        char *p_string;
+        while ((bytes = process->readLine(string, sizeof(string))) > 0)
+        {
+            p_string = string;
+            //qDebug()<<string;
+            state = 0;
+            /*
+             * 0 - до первого пробела
+             * 1 - в пробелах между первой и второй цмфрами
+             * 2 - в процессе считывания номера рабочего стола
+             */
+            int num = 0;
+            for (int i = 0 ; (i < bytes) ; i++){
+                if (state == 0 && *p_string == ' ')
+                    state = 1;
+                else if (state == 1 && *p_string != ' ')
+                    state = 2;
+                if (state == 2)
+                {
+                    if (*p_string == ' ')
+                        break;
+                    else
+                    {
+                        int digit = 0;
+                        switch(*p_string){
+                            case '1':digit = 1;break;
+                            case '2':digit = 2;break;
+                            case '3':digit = 3;break;
+                            case '4':digit = 4;break;
+                            case '5':digit = 5;break;
+                            case '6':digit = 6;break;
+                            case '7':digit = 7;break;
+                            case '8':digit = 8;break;
+                            case '9':digit = 9;break;
+                        }
+                        num = 10 * num + digit;
+                    }
+                }
+                ++p_string;
+            }
+            //qDebug()<<num;
+            usingDesktops.insert(num);
+        }
+    }
+    qDebug()<<usingDesktops;
+    //return;//
 
     //запускаем утилиту "wmctrl -l" через QProcess
     // когда получаем ответ от того процесса, вот этот нижележащий код выполняем
