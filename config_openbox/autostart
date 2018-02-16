@@ -17,7 +17,9 @@
 #xfce-mcs-manager &
 
 (sleep 1s && setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll") &
-feh --bg-fill desktop_image.png &
+#feh --bg-fill desktop_image.png &
+#feh --bg-scale desktop_image.png &
+xsetroot -solid "#001"
 #gnome-terminal --full-screen -e "alsamixer -c1" &
 gnome-terminal --full-screen -e "alsamixer" &
-(sleep 5s && wmctrl -r Terminal -t 24) &
+(sleep 5s && wmctrl -r Terminal -t 16) &
