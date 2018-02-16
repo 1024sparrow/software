@@ -19,7 +19,8 @@
 (sleep 1s && setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll") &
 #feh --bg-fill desktop_image.png &
 #feh --bg-scale desktop_image.png &
-xsetroot -solid "#001"
+xsetroot -solid "#000"
 #gnome-terminal --full-screen -e "alsamixer -c1" &
-gnome-terminal --full-screen -e "alsamixer" &
+#gnome-terminal --full-screen -e "alsamixer" &
+gnome-terminal -e "alsamixer" &
 (sleep 5s && wmctrl -r Terminal -t 16) &
