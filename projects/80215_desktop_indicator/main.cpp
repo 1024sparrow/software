@@ -3,6 +3,6 @@
 
 int main(int argc, char **argv){
     QApplication app(argc, argv);
-    (new Window())->showFullScreen();
+    (new Window())->show();//FullScreen();
     return app.exec();
 }

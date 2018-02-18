@@ -17,7 +17,7 @@ Window::Window()
     wFooter->setFixedSize(SZ.width(), Footer::H);
     wFooter->move(0, SZ.height() - Footer::H);
 
-    QWidget *tester = new Tester(wFooter, 0);
+    //QWidget *tester = new Tester(wFooter, 0);
 }
 
 void Window::paintEvent(QPaintEvent *pe)

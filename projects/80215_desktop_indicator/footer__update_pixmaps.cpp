@@ -7,6 +7,7 @@
 #include <QDebug>//
 
 QColor colors[] = {Qt::blue, Qt::green, Qt::yellow, Qt::red};
+QColor colorGray(255,255,255);
 
 // Характеристики точки, описывающей рабочий стол
 struct PointDescr
@@ -48,24 +49,12 @@ PointDescr pointsMutableBase[] = {
     {'N',24,7,2,2}
     //{'M',25,9,2,0},//fixed
 };
-PointDescr pointsFixed[] = {
+QSet<int> pointsFixed = QSet<int>()<<16<<17<<25;
+/*PointDescr pointsFixed[] = {
     {'J',16,9,1,0},//fixed
     {'K',17,10,1,0},//fixed
     {'M',25,9,2,0}//fixed
-};
-
-/*
- * p_type:
- *   0 - серый
- *   1 - текущий рабочий стол только
- *   2 - все активные рабочие столы
- * p_mode - для которой группы рабочих столов
- */
-
-QPixmap getPixmap(int p_type, int p_mode)
-{
-    //
-}
+};*/
 
 void Footer::updatePixmaps()
 {
@@ -127,9 +116,35 @@ void Footer::updatePixmaps()
     qDebug()<<usingDesktops;
     //return;//
 
+    const int w = 15 * POINT_SIZE;
+    const int h = 3 * POINT_SIZE;
+    m_pix[0] = QPixmap(MODE_COUNT * w, h);
+    m_pix[1] = QPixmap(MODE_COUNT * w, h);
+    m_pix[2] = QPixmap(MODE_COUNT * w, h);
+    m_pix[3] = QPixmap(MODE_COUNT * w, h);
+    QImage img(w, h, QImage::Format_RGB32);
+    img.fill(Qt::black);
+    for (int iMode = 0 ; iMode < MODE_COUNT ; iMode++)
+    {
+        //PointDescr pointsMutableBase[] = {
+        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        {
+            struct PointDescr point = pointsMutableBase[iPoint];
+            //if (pointsFixed.contains(point.id_num))
+
+            for (int x = 0 ; x < POINT_SIZE ; x++)
+            {
+                for (int y = 0 ; y < POINT_SIZE ; y++)
+                {
+                    img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, qRgb(128,128,128));
+                }
+            }
+        }
+    }
+
     //запускаем утилиту "wmctrl -l" через QProcess
     // когда получаем ответ от того процесса, вот этот нижележащий код выполняем
-    int w_single = 15 * POINT_SIZE;
+    /*int w_single = 15 * POINT_SIZE;
     int w = w_single * MODE_COUNT;
     int h = 6 * POINT_SIZE;
     m_pix[0] = QPixmap(w, h);
@@ -139,8 +154,58 @@ void Footer::updatePixmaps()
     m_pix[0].fill(Qt::red);
     m_pix[1].fill(Qt::blue);
     m_pix[2].fill(Qt::white);
-    m_pix[3].fill(Qt::blue);
+    m_pix[3].fill(Qt::blue);*/
 
     if (animationTimerId)
         animationTimerId = startTimer(animDuration);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

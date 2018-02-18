@@ -12,4 +12,5 @@ SOURCES += \
     main.cpp \
     tester.cpp \
     window.cpp \
-    footer__update_pixmaps.cpp
+    footer__update_pixmaps.cpp \
+    get_pixmap.cpp
