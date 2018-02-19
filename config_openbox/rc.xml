@@ -180,7 +180,7 @@
      cases. -->
   <margins>
     <top>0</top>
-    <bottom>8</bottom>
+    <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
@@ -954,16 +954,16 @@
   # end of the example
 -->
     <application class="*">
-        <!--<maximized>true</maximized>-->
-        <decor>no</decor>
+      <!--<maximized>true</maximized>-->
+      <decor>no</decor>
     </application>
     <!--<application class="*Fusion-A191*">-->
     <application type="normal">
-        <maximized>true</maximized>
+      <maximized>true</maximized>
     </application>
     <application name="gimp">
-        <decor>yes</decor>
-        <maximized>false</maximized>
+      <decor>yes</decor>
+      <maximized>false</maximized>
     </application>
   </applications>
 </openbox_config>
