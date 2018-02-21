@@ -4,10 +4,17 @@
 #include <QPixmap>
 #include <QProcess>
 #include <QSet>
+#include <QPainter>
 #include <QDebug>//
 
-QColor colors[] = {Qt::blue, Qt::green, Qt::yellow, Qt::red};
-QColor colorGray(255,255,255);
+QColor colors[] = {
+    //Qt::blue,
+    0x4488ff,
+    Qt::green,
+    Qt::yellow,
+    Qt::red
+};
+QColor colorGray(32,32,32);
 
 // Характеристики точки, описывающей рабочий стол
 struct PointDescr
@@ -122,24 +129,81 @@ void Footer::updatePixmaps()
     m_pix[1] = QPixmap(MODE_COUNT * w, h);
     m_pix[2] = QPixmap(MODE_COUNT * w, h);
     m_pix[3] = QPixmap(MODE_COUNT * w, h);
-    QImage img(w, h, QImage::Format_RGB32);
-    img.fill(Qt::black);
+    QPainter painterPix0(&m_pix[0]);
+    QPainter painterPix1(&m_pix[1]);
+    QPainter painterPix2(&m_pix[2]);
+    QPainter painterPix3(&m_pix[3]);
+
+    QImage imgGray(w, h, QImage::Format_RGB32);
+    imgGray.fill(Qt::black);
+    for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+    {
+        struct PointDescr point = pointsMutableBase[iPoint];
+        for (int x = 0 ; x < POINT_SIZE ; x++)
+        {
+            for (int y = 0 ; y < POINT_SIZE ; y++)
+            {
+                imgGray.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colorGray.rgb());
+            }
+        }
+    }
+    QImage img;
+
     for (int iMode = 0 ; iMode < MODE_COUNT ; iMode++)
     {
-        //PointDescr pointsMutableBase[] = {
+        img = imgGray;
+        qDebug()<<"----";
         for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             //if (pointsFixed.contains(point.id_num))
-
-            for (int x = 0 ; x < POINT_SIZE ; x++)
-            {
-                for (int y = 0 ; y < POINT_SIZE ; y++)
+            if (usingDesktops.contains(point.id_num)){
+                qDebug()<<"x:"<<(int)point.x;
+                for (int x = 0 ; x < POINT_SIZE ; x++)
                 {
-                    img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, qRgb(128,128,128));
+                    for (int y = 0 ; y < POINT_SIZE ; y++)
+                    {
+                        //img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, qRgb(255,255,255));
+                        img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                    }
                 }
             }
         }
+        painterPix0.drawImage(0,0,img);
+
+        img = imgGray;
+        //img.fill(Qt::red);
+        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        {
+            struct PointDescr point = pointsMutableBase[iPoint];
+            //if (pointsFixed.contains(point.id_num))
+        }
+        painterPix1.drawImage(0,0,img);
+
+        img = imgGray;
+        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        {
+            struct PointDescr point = pointsMutableBase[iPoint];
+            //if (pointsFixed.contains(point.id_num))
+            if (usingDesktops.contains(point.id_num)){
+                for (int x = 0 ; x < POINT_SIZE ; x++)
+                {
+                    for (int y = 0 ; y < POINT_SIZE ; y++)
+                    {
+                        img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                    }
+                }
+            }
+        }
+        painterPix2.drawImage(0,0,img);
+
+        img = imgGray;
+        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        {
+            struct PointDescr point = pointsMutableBase[iPoint];
+            //if (pointsFixed.contains(point.id_num))
+        }
+        painterPix3.drawImage(0,0,img);
     }
 
     //запускаем утилиту "wmctrl -l" через QProcess
