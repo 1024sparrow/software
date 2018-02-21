@@ -16,6 +16,7 @@
 #
 #xfce-mcs-manager &
 
+desktop_indicator &
 (sleep 1s && setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll") &
 #feh --bg-fill desktop_image.png &
 #feh --bg-scale desktop_image.png &
