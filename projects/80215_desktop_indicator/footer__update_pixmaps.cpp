@@ -6,6 +6,8 @@
 #include <QSet>
 #include <QPainter>
 #include <QDebug>//
+#include <QDesktopWidget>//for feh-powered
+#include <QTemporaryFile>
 
 QColor colors[] = {
     //Qt::blue,
@@ -272,6 +274,21 @@ void Footer::updatePixmaps()
     m_pix[1].fill(Qt::blue);
     m_pix[2].fill(Qt::white);
     m_pix[3].fill(Qt::blue);*/
+
+    if (fehPowered)
+    {
+        QPixmap bg(QDesktopWidget().size());
+        bg.fill(Qt::black);
+        QPainter painter;
+        for (int i = 0 ; i < 4 ; i++)
+        {
+            QPixmap m_pix_big(bg);
+            painter.begin(&m_pix_big);
+            painter.drawPixmap(0,bg.height() - m_pix[i].height(), m_pix[i]);
+            painter.end();
+            m_pix_big.save(QString("/home/boris/.desktopIndicator_%1.png").arg(i));
+        }
+    }
 
     if (animationTimerId)
         animationTimerId = startTimer(animDuration);

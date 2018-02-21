@@ -26,9 +26,11 @@ private:
     static const int animDuration;
 
 private:
+    bool fehPowered;
     char m_mode; // текущая группа рабочих столов
     char m_cur; // текущий рабочий стол
     QPixmap m_pix[4];
+    //
     int m_currentPix;
     int animationTimerId;
 };
