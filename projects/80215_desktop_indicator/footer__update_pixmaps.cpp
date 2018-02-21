@@ -10,11 +10,13 @@
 QColor colors[] = {
     //Qt::blue,
     0x4488ff,
+    //0xff8800,
+    //Qt::green,
     Qt::green,
     Qt::yellow,
     Qt::red
 };
-QColor colorGray(32,32,32);
+QColor colorGray(16,16,16);
 
 // ’арактеристики точки, описывающей рабочий стол
 struct PointDescr
@@ -139,9 +141,9 @@ void Footer::updatePixmaps()
     for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
     {
         struct PointDescr point = pointsMutableBase[iPoint];
-        for (int x = 0 ; x < POINT_SIZE ; x++)
+        for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
         {
-            for (int y = 0 ; y < POINT_SIZE ; y++)
+            for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
             {
                 imgGray.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colorGray.rgb());
             }
@@ -159,9 +161,9 @@ void Footer::updatePixmaps()
             //if (pointsFixed.contains(point.id_num))
             if (usingDesktops.contains(point.id_num)){
                 qDebug()<<"x:"<<(int)point.x;
-                for (int x = 0 ; x < POINT_SIZE ; x++)
+                for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
                 {
-                    for (int y = 0 ; y < POINT_SIZE ; y++)
+                    for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                     {
                         //img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, qRgb(255,255,255));
                         img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
@@ -186,9 +188,9 @@ void Footer::updatePixmaps()
             struct PointDescr point = pointsMutableBase[iPoint];
             //if (pointsFixed.contains(point.id_num))
             if (usingDesktops.contains(point.id_num)){
-                for (int x = 0 ; x < POINT_SIZE ; x++)
+                for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
                 {
-                    for (int y = 0 ; y < POINT_SIZE ; y++)
+                    for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                     {
                         img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                     }

@@ -5,6 +5,7 @@
 //const int Footer::MODE_COUNT = 3;
 const int Footer::MODE_COUNT = 1;
 const int Footer::POINT_SIZE = 4;
+const int Footer::POINT_PADDING = 1;
 const int Footer::H = Footer::POINT_SIZE * 3;
 const int Footer::animDuration = 400;
 

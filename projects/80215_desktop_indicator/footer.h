@@ -22,6 +22,7 @@ private:
     void updatePixmaps(); // обновляем данные об используемых рабочих столах
     static const int MODE_COUNT;
     static const int POINT_SIZE;
+    static const int POINT_PADDING;
     static const int animDuration;
 
 private:
