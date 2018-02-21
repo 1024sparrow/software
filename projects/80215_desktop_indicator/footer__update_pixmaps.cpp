@@ -18,7 +18,8 @@ QColor colors[] = {
     Qt::yellow,
     Qt::red
 };
-QColor colorGray(16,16,16);
+//QColor colorGray(16,16,16);
+QColor colorGray(32,32,32);
 
 // ’арактеристики точки, описывающей рабочий стол
 struct PointDescr
