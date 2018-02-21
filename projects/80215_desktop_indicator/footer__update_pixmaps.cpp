@@ -47,16 +47,16 @@ PointDescr pointsMutableBase[] = {
     {'F',13,4,1,1},
     {'G',14,6,1,2},
     {'H',15,7,1,2},
-    //{'J',16,9,1,0},//fixed
-    //{'K',17,10,1,0},//fixed
+    {'J',16,9,1,3},//fixed
+    {'K',17,10,1,3},//fixed
     {'L',18,11,1,1},
     {'Z',19,0,2,0},
     {'X',20,1,2,0},
     {'C',21,3,2,1},
     {'V',22,4,2,1},
     {'B',23,6,2,2},
-    {'N',24,7,2,2}
-    //{'M',25,9,2,0},//fixed
+    {'N',24,7,2,2},
+    {'M',25,9,2,3},//fixed
 };
 QSet<int> pointsFixed = QSet<int>()<<16<<17<<25;
 /*PointDescr pointsFixed[] = {
@@ -122,7 +122,7 @@ void Footer::updatePixmaps()
             usingDesktops.insert(num);
         }
     }
-    qDebug()<<usingDesktops;
+    //qDebug()<<usingDesktops;
     //return;//
 
     const int w = 15 * POINT_SIZE;
@@ -190,7 +190,8 @@ void Footer::updatePixmaps()
                     }
                 }
             }
-            if (point.id == m_cur && iMode == m_mode)
+            //if (point.id == m_cur && iMode == m_mode)
+            if (point.id != m_cur && iMode == m_mode)
             {
                 if (usingDesktops.contains(point.id_num)){
                     for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
@@ -242,7 +243,7 @@ void Footer::updatePixmaps()
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             //if (pointsFixed.contains(point.id_num))
-            if (point.id == m_cur && iMode == m_mode)
+            if (point.id != m_cur && iMode == m_mode)
             {
                 if (usingDesktops.contains(point.id_num)){
                     for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
