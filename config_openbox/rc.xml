@@ -957,6 +957,11 @@
       <!--<maximized>true</maximized>-->
       <decor>no</decor>
     </application>
+    <application class="70313_desktop_indicator">
+        <desktop>all</desktop>
+        <skip_taskbar>yes</skip_taskbar>
+        <focus>no</focus>
+    </application>
     <!--<application class="*Fusion-A191*">-->
     <application type="normal">
       <maximized>true</maximized>
