@@ -14,6 +14,7 @@ const int Footer::animDuration = 400;
 
 Footer::Footer(QWidget *parent)
     :QWidget(0, Qt::SplashScreen), fehPowered(false), m_cur('~'), m_mode(1), animationTimerId(0)
+    ,m_currentPix(0)
 {
     setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
     QSize SZ = QApplication::desktop()->availableGeometry().size();
