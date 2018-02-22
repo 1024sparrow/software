@@ -11,7 +11,7 @@ const int Footer::H = Footer::POINT_SIZE * 3;
 const int Footer::animDuration = 400;
 
 Footer::Footer(QWidget *parent)
-    :QWidget(parent), fehPowered(true), m_cur('~'), m_mode(1), animationTimerId(0)
+    :QWidget(parent), fehPowered(false), m_cur('~'), m_mode(1), animationTimerId(0)
 {
     onSwitched('Q');
     animationTimerId = startTimer(animDuration);
