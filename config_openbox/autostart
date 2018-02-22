@@ -16,7 +16,7 @@
 #
 #xfce-mcs-manager &
 
-desktop_indicator &
+#desktop_indicator &
 (sleep 1s && setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll") &
 #feh --bg-fill desktop_image.png &
 #feh --bg-scale desktop_image.png &
@@ -25,3 +25,4 @@ xsetroot -solid "#000"
 #gnome-terminal --full-screen -e "alsamixer" &
 gnome-terminal -e "alsamixer" &
 (sleep 5s && wmctrl -r Terminal -t 16) &
+(sleep 6s && 80215_desktop_indicator) &

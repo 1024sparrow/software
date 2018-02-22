@@ -2,6 +2,8 @@
 #include <QPainter>
 #include <QFont>
 #include <QProcess>
+#include <QApplication>
+#include <QDesktopWidget>
 
 const int Footer::MODE_COUNT = 3;
 //const int Footer::MODE_COUNT = 1;//
@@ -11,8 +13,14 @@ const int Footer::H = Footer::POINT_SIZE * 3;
 const int Footer::animDuration = 400;
 
 Footer::Footer(QWidget *parent)
-    :QWidget(parent), fehPowered(false), m_cur('~'), m_mode(1), animationTimerId(0)
+    :QWidget(0, Qt::SplashScreen), fehPowered(false), m_cur('~'), m_mode(1), animationTimerId(0)
 {
+    setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
+    QSize SZ = QApplication::desktop()->availableGeometry().size();
+    setFixedSize(SZ.width(), Footer::H);
+    //move(0, QApplication::desktop()->screenGeometry().height());// - Footer::H);
+    move(QPoint(0, QApplication::desktop()->screenGeometry().height() - Footer::H));
+
     onSwitched('Q');
     animationTimerId = startTimer(animDuration);
 }
