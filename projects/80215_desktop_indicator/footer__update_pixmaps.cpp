@@ -161,7 +161,7 @@ void Footer::updatePixmaps()
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             //if (pointsFixed.contains(point.id_num))
-            if (usingDesktops.contains(point.id_num)){
+            if (usingDesktops.contains(point.id_num) || (point.id == m_cur && iMode == m_mode)){
                 for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
                 {
                     for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
@@ -214,11 +214,9 @@ void Footer::updatePixmaps()
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             //if (pointsFixed.contains(point.id_num))
-
-            //if (point.id == m_cur && iMode == m_mode)
             if (iMode == m_mode)
             {
-                if (usingDesktops.contains(point.id_num)){
+                if (usingDesktops.contains(point.id_num) || (point.id == m_cur)){
                     for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
