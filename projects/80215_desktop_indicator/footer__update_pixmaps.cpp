@@ -139,8 +139,9 @@ void Footer::updatePixmaps()
     QPainter painterPix2(&m_pix[2]);
     QPainter painterPix3(&m_pix[3]);
 
-    QImage imgGray(w, h, QImage::Format_RGB32);
-    imgGray.fill(Qt::black);
+    QImage imgBlack(w, h, QImage::Format_RGB32);
+    imgBlack.fill(Qt::black);
+    QImage imgGray = imgBlack;
     for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
     {
         struct PointDescr point = pointsMutableBase[iPoint];
@@ -209,7 +210,7 @@ void Footer::updatePixmaps()
         }
         painterPix1.drawImage(iMode * w,0,img);
 
-        img = imgGray;
+        img = (iMode == m_mode) ? imgGray : imgBlack;
         for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
@@ -239,7 +240,7 @@ void Footer::updatePixmaps()
         }
         painterPix2.drawImage(iMode * w,0,img);
 
-        img = imgGray;
+        img = (iMode == m_mode) ? imgGray : imgBlack;
         for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
