@@ -40,6 +40,7 @@ Footer::Footer()
 void Footer::onSwitched(char id)
 {
     //qDebug()<<"desktop: "<<id;
+    m_currentPix = 0;
     m_cur = id;
     updatePixmaps();
     if (isVisible())
@@ -72,7 +73,7 @@ void Footer::paintEvent(QPaintEvent *pe)
 
     /*QPainter p(this);
     QFont font;
-    font.setPixelSize(H - 2);
+    font.setPixelSize(H - 2);   , bg
     p.setFont(font);
     p.fillRect(this->rect(), Qt::yellow);
     p.drawText(rect(), QString(m_cur));*/
