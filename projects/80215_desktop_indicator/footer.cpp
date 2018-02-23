@@ -1,9 +1,11 @@
 #include "footer.h"
+#include "comandlistener.h"
 #include <QPainter>
 #include <QFont>
 #include <QProcess>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QDebug>
 
 const int Footer::MODE_COUNT = 3;
 //const int Footer::MODE_COUNT = 1;//
@@ -12,11 +14,15 @@ const int Footer::POINT_PADDING = 1;
 const int Footer::H = Footer::POINT_SIZE * 3;
 const int Footer::animDuration = 400;
 
-Footer::Footer(QWidget *parent)
+Footer::Footer()
     :QWidget(0, Qt::SplashScreen), fehPowered(false), m_cur('~'), m_mode(1), animationTimerId(0)
     ,m_currentPix(0)
 {
     setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
+
+    m_comandListener = new ComandListener(this);
+    //m_comandListener->moveToThread(&m_comandListenerThread);
+
     QSize SZ = QApplication::desktop()->availableGeometry().size();
     setFixedSize(SZ.width(), Footer::H);
     //move(0, QApplication::desktop()->screenGeometry().height());// - Footer::H);
@@ -24,19 +30,33 @@ Footer::Footer(QWidget *parent)
 
     onSwitched('Q');
     animationTimerId = startTimer(animDuration);
+
+    connect(m_comandListener, SIGNAL(sgnSwitch(char)), this, SLOT(onSwitched(char)));
+    connect(m_comandListener, SIGNAL(sgnSwitchModeUp()), this, SLOT(onModeSwicthedUp()));
+    connect(m_comandListener, SIGNAL(sgnSwitchModeDown()), this, SLOT(onModeSwicthedDown()));
+    m_comandListener->start();
 }
 
 void Footer::onSwitched(char id)
 {
+    //qDebug()<<"desktop: "<<id;
     m_cur = id;
     updatePixmaps();
     if (isVisible())
         repaint();
 }
 
-void Footer::onModeSwicthed()
+void Footer::onModeSwicthedUp()
 {
-    m_mode = ++m_mode % MODE_COUNT;
+    m_mode = (m_mode + 1) % MODE_COUNT;
+    updatePixmaps();
+    if (isVisible())
+        repaint();
+}
+
+void Footer::onModeSwicthedDown()
+{
+    m_mode = (m_mode + MODE_COUNT - 1) % MODE_COUNT;
     updatePixmaps();
     if (isVisible())
         repaint();

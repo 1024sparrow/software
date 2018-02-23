@@ -2,18 +2,21 @@
 #define FOOTER_H
 
 #include <QWidget>
+#include <QThread>
 
 class QPaintEvent;
 class QTimerEvent;
+class ComandListener;
 class Footer : public QWidget
 {
     Q_OBJECT
 public:
-    Footer(QWidget *parent = 0);
+    Footer();
     static const int H;
 public slots:
     void onSwitched(char id);
-    void onModeSwicthed();
+    void onModeSwicthedUp();
+    void onModeSwicthedDown();
 
 protected:
     void paintEvent(QPaintEvent *pe);
@@ -30,6 +33,8 @@ private:
     char m_mode; // текущая группа рабочих столов
     char m_cur; // текущий рабочий стол
     QPixmap m_pix[4];
+    ComandListener *m_comandListener;
+    //QThread m_comandListenerThread;
     //
     int m_currentPix;
     int animationTimerId;
