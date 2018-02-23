@@ -49,6 +49,7 @@ void Footer::onSwitched(char id)
 void Footer::onModeSwicthedUp()
 {
     m_mode = (m_mode + 1) % MODE_COUNT;
+    m_currentPix = 2;
     updatePixmaps();
     if (isVisible())
         repaint();
@@ -57,6 +58,7 @@ void Footer::onModeSwicthedUp()
 void Footer::onModeSwicthedDown()
 {
     m_mode = (m_mode + MODE_COUNT - 1) % MODE_COUNT;
+    m_currentPix = 2;
     updatePixmaps();
     if (isVisible())
         repaint();
