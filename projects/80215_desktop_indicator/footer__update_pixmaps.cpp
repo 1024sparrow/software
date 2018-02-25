@@ -277,35 +277,6 @@ void Footer::updatePixmaps()
         painterPix3.drawImage(iMode * w,0,img);
     }
 
-    //запускаем утилиту "wmctrl -l" через QProcess
-    // когда получаем ответ от того процесса, вот этот нижележащий код выполняем
-    /*int w_single = 15 * POINT_SIZE;
-    int w = w_single * MODE_COUNT;
-    int h = 6 * POINT_SIZE;
-    m_pix[0] = QPixmap(w, h);
-    m_pix[1] = QPixmap(w, h);
-    m_pix[2] = QPixmap(w, h);
-    m_pix[3] = QPixmap(w, h);
-    m_pix[0].fill(Qt::red);
-    m_pix[1].fill(Qt::blue);
-    m_pix[2].fill(Qt::white);
-    m_pix[3].fill(Qt::blue);*/
-
-    if (fehPowered)
-    {
-        QPixmap bg(QDesktopWidget().size());
-        bg.fill(Qt::black);
-        QPainter painter;
-        for (int i = 0 ; i < 4 ; i++)
-        {
-            QPixmap m_pix_big(bg);
-            painter.begin(&m_pix_big);
-            painter.drawPixmap(0,bg.height() - m_pix[i].height(), m_pix[i]);
-            painter.end();
-            m_pix_big.save(QString("/home/boris/.desktopIndicator_%1.png").arg(i));
-        }
-    }
-
     if (animationTimerId)
         animationTimerId = startTimer(animDuration);
 }

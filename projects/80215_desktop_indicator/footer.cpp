@@ -15,7 +15,7 @@ const int Footer::H = Footer::POINT_SIZE * 3;
 const int Footer::animDuration = 400;
 
 Footer::Footer()
-    :QWidget(0, Qt::SplashScreen), fehPowered(false), m_cur('~'), m_mode(0), animationTimerId(0)
+    :QWidget(0, Qt::SplashScreen), m_cur('~'), m_mode(0), animationTimerId(0)
     ,m_currentPix(0)
 {
     setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
@@ -107,10 +107,4 @@ void Footer::timerEvent(QTimerEvent *te)
         repaint();
     if (m_currentPix == 3)
         updatePixmaps();
-    if (fehPowered)
-    {
-        QProcess *process = new QProcess(this);
-        process->start(QString("feh --bg-fill /home/boris/.desktopIndicator_%1.png").arg(m_currentPix));
-        process->waitForFinished(500);
-    }
 }
