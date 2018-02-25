@@ -13,6 +13,8 @@ signals:
     void sgnSwitch(char id);
     void sgnSwitchModeUp();
     void sgnSwitchModeDown();
+private:
+    void setupDesktopCount();
 };
 
 #endif // COMANDLISTENER_H

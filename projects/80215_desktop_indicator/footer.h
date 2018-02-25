@@ -22,7 +22,7 @@ protected:
     void paintEvent(QPaintEvent *pe);
     void timerEvent(QTimerEvent *te);
 private:
-    void updatePixmaps(); // обновляем данные об используемых рабочих столах
+    void updatePixmaps(); // РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ РѕР± РёСЃРїРѕР»СЊР·СѓРµРјС‹С… СЂР°Р±РѕС‡РёС… СЃС‚РѕР»Р°С…
     static const int MODE_COUNT;
     static const int POINT_SIZE;
     static const int POINT_PADDING;
@@ -30,8 +30,8 @@ private:
 
 private:
     bool fehPowered;
-    char m_mode; // текущая группа рабочих столов
-    char m_cur; // текущий рабочий стол
+    char m_mode; // С‚РµРєСѓС‰Р°СЏ РіСЂСѓРїРїР° СЂР°Р±РѕС‡РёС… СЃС‚РѕР»РѕРІ
+    char m_cur; // С‚РµРєСѓС‰РёР№ СЂР°Р±РѕС‡РёР№ СЃС‚РѕР»
     QPixmap m_pix[4];
     ComandListener *m_comandListener;
     //QThread m_comandListenerThread;

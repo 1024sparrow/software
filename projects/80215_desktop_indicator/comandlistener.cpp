@@ -8,23 +8,19 @@ ComandListener::ComandListener(QObject *parent)
 
 }
 
+/*
+ * dA - переключиться на рабочий стол A
+ * mf - переключиться на следующую группу рабочих столов (mode forward)
+ * mb - переключиться на предыдущую группу рабочих столов (mode backward)
+ */
 void ComandListener::run()
 {
-    /*FILE *fp;
-    fp=fopen("/home/boris/.desktop_indicator.fifo", "r");
-    char c;
-    while((c=getc(fp)) != EOF)
-    {
-        printf("%c",c);
-    }
-    qDebug()<<"++++++++";
-    fclose(fp);*/
-
     FILE *fp;
     fp=fopen("/home/boris/.desktop_indicator.fifo", "r");
-    //bool bCommandTypeDetermined = false;
-    //bool bSwitchToDesktop = false;
-    //bool bSwitchToMode = false;
+    if (fp)
+    {
+        setupDesktopCount();
+    }
     char command = 0;//0 - not command ; 1 - change desktop ; 2 - change mode
     while (true)
     {
@@ -55,4 +51,9 @@ void ComandListener::run()
     }
     qDebug()<<"++++++++";
     fclose(fp);
+}
+
+void ComandListener::setupDesktopCount()
+{
+    //
 }
