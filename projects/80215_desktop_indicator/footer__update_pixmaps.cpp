@@ -102,6 +102,11 @@ void Footer::updatePixmaps()
                 {
                     if (*p_string == ' ')
                         break;
+                    else if (*p_string == '-')
+                    {
+                        num = -1;
+                        break;
+                    }
                     else
                     {
                         int digit = 0;
@@ -122,7 +127,8 @@ void Footer::updatePixmaps()
                 ++p_string;
             }
             //qDebug()<<num;
-            usingDesktops.insert(num);
+            if (num >= 0)
+                usingDesktops.insert(num);
         }
     }
     //qDebug()<<usingDesktops;
