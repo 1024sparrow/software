@@ -183,7 +183,7 @@ void Footer::updatePixmaps()
                 }
             }
         }
-        painterPix0.drawImage(iMode * w,0,img);
+        painterPix0.drawImage(((iMode + MODE_COUNT / 2) % MODE_COUNT) * w,0,img);
 
         img = imgGray;
         //img.fill(Qt::red);
@@ -220,7 +220,7 @@ void Footer::updatePixmaps()
                 }
             }
         }
-        painterPix1.drawImage(iMode * w,0,img);
+        painterPix1.drawImage(((iMode + MODE_COUNT / 2) % MODE_COUNT) * w,0,img);
 
         img = (iMode == m_mode) ? imgGray : imgBlack;
         for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
@@ -252,7 +252,7 @@ void Footer::updatePixmaps()
 //                }
 //            }
         }
-        painterPix2.drawImage(iMode * w,0,img);
+        painterPix2.drawImage(((iMode + MODE_COUNT / 2) % MODE_COUNT) * w,0,img);
 
         img = (iMode == m_mode) ? imgGray : imgBlack;
         for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
@@ -274,7 +274,7 @@ void Footer::updatePixmaps()
                 }
             }
         }
-        painterPix3.drawImage(iMode * w,0,img);
+        painterPix3.drawImage(((iMode + MODE_COUNT / 2) % MODE_COUNT) * w,0,img);
     }
 
     if (animationTimerId)
