@@ -18,6 +18,7 @@ public slots:
     void onModeSwicthedUp();
     void onModeSwicthedDown();
     void initialize();
+    void toggleChilrenMode();
 
 protected:
     void paintEvent(QPaintEvent *pe);
@@ -38,6 +39,7 @@ private:
     ComandListener *m_comandListener;
     int m_currentPix;
     int animationTimerId;
+    bool m_childrenMode;
 };
 
 #endif // FOOTER_H

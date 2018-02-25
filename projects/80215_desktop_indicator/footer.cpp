@@ -16,7 +16,7 @@ const int Footer::animDuration = 400;
 
 Footer::Footer()
     :QWidget(0, Qt::SplashScreen), m_cur('~'), m_mode(0), animationTimerId(0)
-    ,m_currentPix(0)
+    ,m_currentPix(0), m_childrenMode(false)
 {
     setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
 
@@ -84,6 +84,11 @@ void Footer::initialize()
     QProcess *process = new QProcess(this);
     process->start(QString("wmctrl -n %1").arg(26 * MODE_COUNT));
     process->waitForFinished();
+}
+
+void Footer::toggleChilrenMode()
+{
+    //
 }
 
 void Footer::paintEvent(QPaintEvent *pe)

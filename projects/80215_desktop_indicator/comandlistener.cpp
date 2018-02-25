@@ -12,6 +12,7 @@ ComandListener::ComandListener(QObject *parent)
  * dA - переключиться на рабочий стол A
  * mf - переключиться на следующую группу рабочих столов (mode forward)
  * mb - переключиться на предыдущую группу рабочих столов (mode backward)
+ * c - активация/деактивация детского режима
  */
 void ComandListener::run()
 {
