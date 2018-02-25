@@ -61,7 +61,9 @@ PointDescr pointsMutableBase[] = {
     {'N',24,7,2,2},
     {'M',25,9,2,0},//fixed
 };
-QSet<int> pointsFixed = QSet<int>()<<16<<17<<25;
+int pointsCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr);
+//QSet<int> pointsFixed = QSet<int>()<<16<<17<<25;
+QSet<int> Footer::pointsFixed = QSet<int>()<<'J'<<'K'<<'M';
 /*PointDescr pointsFixed[] = {
     {'J',16,9,1,0},//fixed
     {'K',17,10,1,0},//fixed
@@ -148,7 +150,7 @@ void Footer::updatePixmaps()
     QImage imgBlack(w, h, QImage::Format_RGB32);
     imgBlack.fill(Qt::black);
     QImage imgGray = imgBlack;
-    for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+    for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
     {
         struct PointDescr point = pointsMutableBase[iPoint];
         for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
@@ -164,9 +166,11 @@ void Footer::updatePixmaps()
     for (int iMode = 0 ; iMode < MODE_COUNT ; iMode++)
     {
         img = imgGray;
-        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
+            if (!pointsFixed.contains(point.id))
+                point.id_num += (pointsCount * iMode);
             //if (pointsFixed.contains(point.id_num))
             if (usingDesktops.contains(point.id_num) || (point.id == m_cur && iMode == m_mode)){
                 for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
@@ -183,11 +187,13 @@ void Footer::updatePixmaps()
 
         img = imgGray;
         //img.fill(Qt::red);
-        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             //if (pointsFixed.contains(point.id_num))
             //if (point.id == m_cur && iMode != m_mode)
+            if (!pointsFixed.contains(point.id))
+                point.id_num += (pointsCount * iMode);
             if (iMode != m_mode)
             {
                 if (usingDesktops.contains(point.id_num)){
@@ -217,9 +223,11 @@ void Footer::updatePixmaps()
         painterPix1.drawImage(iMode * w,0,img);
 
         img = (iMode == m_mode) ? imgGray : imgBlack;
-        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
+            if (!pointsFixed.contains(point.id))
+                point.id_num += (pointsCount * iMode);
             //if (pointsFixed.contains(point.id_num))
             if (iMode == m_mode)
             {
@@ -247,9 +255,11 @@ void Footer::updatePixmaps()
         painterPix2.drawImage(iMode * w,0,img);
 
         img = (iMode == m_mode) ? imgGray : imgBlack;
-        for (int iPoint = 0, iPointCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr) ; iPoint < iPointCount ; iPoint++)
+        for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
+            if (!pointsFixed.contains(point.id))
+                point.id_num += (pointsCount * iMode);
             //if (pointsFixed.contains(point.id_num))
             if (point.id != m_cur && iMode == m_mode)
             {
@@ -298,6 +308,17 @@ void Footer::updatePixmaps()
 
     if (animationTimerId)
         animationTimerId = startTimer(animDuration);
+}
+
+int Footer::desktopNum(char id, char mode)
+{
+    for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
+    {
+        const struct PointDescr &point = pointsMutableBase[iPoint];
+        if (point.id == id)
+            return pointsFixed.contains(id) ? point.id_num : point.id_num + mode * pointsCount;
+    }
+    return -1;
 }
 
 

@@ -13,6 +13,7 @@ signals:
     void sgnSwitch(char id);
     void sgnSwitchModeUp();
     void sgnSwitchModeDown();
+    void sgnInitialize();
 private:
     void setupDesktopCount();
 };

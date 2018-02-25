@@ -19,7 +19,7 @@ void ComandListener::run()
     fp=fopen("/home/boris/.desktop_indicator.fifo", "r");
     if (fp)
     {
-        setupDesktopCount();
+        emit sgnInitialize();
     }
     char command = 0;//0 - not command ; 1 - change desktop ; 2 - change mode
     while (true)
@@ -51,9 +51,4 @@ void ComandListener::run()
     }
     qDebug()<<"++++++++";
     fclose(fp);
-}
-
-void ComandListener::setupDesktopCount()
-{
-    //
 }

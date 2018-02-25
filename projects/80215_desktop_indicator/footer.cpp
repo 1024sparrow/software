@@ -15,7 +15,7 @@ const int Footer::H = Footer::POINT_SIZE * 3;
 const int Footer::animDuration = 400;
 
 Footer::Footer()
-    :QWidget(0, Qt::SplashScreen), fehPowered(false), m_cur('~'), m_mode(1), animationTimerId(0)
+    :QWidget(0, Qt::SplashScreen), fehPowered(false), m_cur('~'), m_mode(0), animationTimerId(0)
     ,m_currentPix(0)
 {
     setWindowFlags(Qt::WindowStaysOnTopHint|Qt::FramelessWindowHint);
@@ -34,12 +34,16 @@ Footer::Footer()
     connect(m_comandListener, SIGNAL(sgnSwitch(char)), this, SLOT(onSwitched(char)));
     connect(m_comandListener, SIGNAL(sgnSwitchModeUp()), this, SLOT(onModeSwicthedUp()));
     connect(m_comandListener, SIGNAL(sgnSwitchModeDown()), this, SLOT(onModeSwicthedDown()));
+    connect(m_comandListener, SIGNAL(sgnInitialize()), this, SLOT(initialize()));
     m_comandListener->start();
 }
 
 void Footer::onSwitched(char id)
 {
-    //qDebug()<<"desktop: "<<id;
+    QProcess *process = new QProcess(this);
+    process->start(QString("wmctrl -s %1").arg(desktopNum(id, m_mode)));
+    process->waitForFinished();
+
     m_currentPix = 0;
     m_cur = id;
     updatePixmaps();
@@ -50,6 +54,11 @@ void Footer::onSwitched(char id)
 void Footer::onModeSwicthedUp()
 {
     m_mode = (m_mode + 1) % MODE_COUNT;
+
+    QProcess *process = new QProcess(this);
+    process->start(QString("wmctrl -s %1").arg(desktopNum(m_cur, m_mode)));
+    process->waitForFinished();
+
     m_currentPix = 2;
     updatePixmaps();
     if (isVisible())
@@ -59,10 +68,22 @@ void Footer::onModeSwicthedUp()
 void Footer::onModeSwicthedDown()
 {
     m_mode = (m_mode + MODE_COUNT - 1) % MODE_COUNT;
+
+    QProcess *process = new QProcess(this);
+    process->start(QString("wmctrl -s %1").arg(desktopNum(m_cur, m_mode)));
+    process->waitForFinished();
+
     m_currentPix = 2;
     updatePixmaps();
     if (isVisible())
         repaint();
+}
+
+void Footer::initialize()
+{
+    QProcess *process = new QProcess(this);
+    process->start(QString("wmctrl -n %1").arg(26 * MODE_COUNT));
+    process->waitForFinished();
 }
 
 void Footer::paintEvent(QPaintEvent *pe)
