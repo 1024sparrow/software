@@ -6,7 +6,6 @@
 #include <QSet>
 #include <QPainter>
 #include <QDebug>//
-#include <QDesktopWidget>//for feh-powered
 #include <QTemporaryFile>
 
 QColor colors[] = {
@@ -172,7 +171,8 @@ void Footer::updatePixmaps()
             if (!pointsFixed.contains(point.id))
                 point.id_num += (pointsCount * iMode);
             //if (pointsFixed.contains(point.id_num))
-            if (usingDesktops.contains(point.id_num) || (point.id == m_cur && iMode == m_mode)){
+            if (usingDesktops.contains(point.id_num) || (point.id == m_cur && iMode == m_mode))
+            {
                 for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
                 {
                     for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
@@ -222,12 +222,25 @@ void Footer::updatePixmaps()
         }
         painterPix1.drawImage(((iMode + MODE_COUNT / 2) % MODE_COUNT) * w,0,img);
 
-        img = (iMode == m_mode) ? imgGray : imgBlack;
+        //img = (iMode == m_mode) ? imgGray : imgBlack;
+        img = imgGray;
         for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             if (!pointsFixed.contains(point.id))
                 point.id_num += (pointsCount * iMode);
+            if (iMode != m_mode)
+            {
+                if (usingDesktops.contains(point.id_num)){
+                    for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
+                    {
+                        for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
+                        {
+                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                        }
+                    }
+                }
+            }
             //if (pointsFixed.contains(point.id_num))
             if (iMode == m_mode)
             {
@@ -254,12 +267,25 @@ void Footer::updatePixmaps()
         }
         painterPix2.drawImage(((iMode + MODE_COUNT / 2) % MODE_COUNT) * w,0,img);
 
-        img = (iMode == m_mode) ? imgGray : imgBlack;
+        //img = (iMode == m_mode) ? imgGray : imgBlack;
+        img = imgGray;
         for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
         {
             struct PointDescr point = pointsMutableBase[iPoint];
             if (!pointsFixed.contains(point.id))
                 point.id_num += (pointsCount * iMode);
+            if (iMode != m_mode)
+            {
+                if (usingDesktops.contains(point.id_num)){
+                    for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
+                    {
+                        for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
+                        {
+                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                        }
+                    }
+                }
+            }
             //if (pointsFixed.contains(point.id_num))
             if (point.id != m_cur && iMode == m_mode)
             {
