@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>xml_driven/undo.png</file>
+        <file>xml_driven/redo.png</file>
+        <file>xml_driven/add.png</file>
+    </qresource>
+</RCC>

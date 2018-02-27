@@ -6,7 +6,7 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
 
     Gameplay *gp = new Gameplay();
-    gp->showMaximized();
+    gp->show();//Maximized();
 
     return app.exec();
 }
