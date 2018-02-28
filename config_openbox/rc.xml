@@ -246,10 +246,18 @@
         <to>left</to>
         <wrap>no</wrap>
       </action>
+      <action name="GoToDesktop">
+        <to>up</to>
+        <wrap>no</wrap>
+      </action>
     </keybind>
     <keybind key="S-A-Right">
       <action name="SendToDesktop">
         <to>right</to>
+        <wrap>no</wrap>
+      </action>
+      <action name="GoToDesktop">
+        <to>down</to>
         <wrap>no</wrap>
       </action>
     </keybind>
