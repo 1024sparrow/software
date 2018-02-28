@@ -5,6 +5,9 @@
 
 #include <string.h>
 
+#include <boris_h/xml_driven/xmlpublisher.h>
+#include "display.h"
+
 //QMap<int, const char *>
 //const QMap<char, >
 typedef struct{
@@ -54,12 +57,20 @@ KeyDescr keyDescr[] =
 Gameplay::Gameplay()
     :QWidget(0)
 {
+    boris::XmlPublisher *publisher = new boris::XmlPublisher(this);
+    m_display = new Display(publisher, this);
+    publisher->registerSubscriber(m_display);
 }
 
 void Gameplay::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::Dense1Pattern);
+}
+
+void Gameplay::resizeEvent(QResizeEvent *)
+{
+    m_display->setFixedSize(size());
 }
 
 void Gameplay::keyPressEvent(QKeyEvent *event)
