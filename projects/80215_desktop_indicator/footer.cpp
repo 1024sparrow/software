@@ -41,8 +41,14 @@ Footer::Footer()
 void Footer::onSwitched(char id)
 {
     QProcess *process = new QProcess(this);
-    process->start(QString("wmctrl -s %1").arg(desktopNum(id, m_mode)));
+    int num = desktopNum(id, m_mode);
+    process->start(QString("wmctrl -s %1").arg(num));
     process->waitForFinished();
+    if (!usingDesktops.contains(num))
+    {
+        process->start(QString("gnome-terminal"));
+        process->waitForFinished();
+    }
 
     m_currentPix = 0;
     m_cur = id;

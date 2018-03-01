@@ -74,7 +74,8 @@ void Footer::updatePixmaps()
     if (animationTimerId)
         killTimer(animationTimerId);
 
-    QSet<int> usingDesktops;
+    //QSet<int> usingDesktops;
+    usingDesktops.clear();
     {
         QProcess *process = new QProcess(this);
         process->start("wmctrl -l");

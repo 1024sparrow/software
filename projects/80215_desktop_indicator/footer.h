@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QThread>
+#include <QSet>
 
 class QPaintEvent;
 class QTimerEvent;
@@ -31,6 +32,7 @@ private:
     static const int POINT_PADDING;
     static const int animDuration;
     static QSet<int> pointsFixed;
+    QSet<int> usingDesktops;
 
 private:
     char m_mode; // текущая группа рабочих столов
