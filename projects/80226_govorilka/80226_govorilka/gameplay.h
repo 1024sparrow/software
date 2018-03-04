@@ -21,8 +21,10 @@ protected:
     void resizeEvent(QResizeEvent *);
     void keyPressEvent (QKeyEvent * event);
     void keyReleaseEvent (QKeyEvent * event);
-    void play(const char *str);
+    void play(const char *str); // если передан нулевой указатель, то сигнализировать о некорректной комбинации букв
     void stop();
+private slots:
+    void onPlaybackFinished();
 
 private:
     Display *m_display;
@@ -36,6 +38,7 @@ private:
         STATE__MOL_SOGL, // не звучит, звучала последний раз согласная
         STATE__MOL_SL // не звучит, звучал последний раз слог
     } m_state;
+    char m_lastPlaying[1024];
     boris::Musicplayer *m_player;
 
 };

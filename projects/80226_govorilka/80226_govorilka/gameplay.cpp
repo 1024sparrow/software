@@ -4,8 +4,10 @@
 #include <QDebug>
 
 #include <string.h>
+#include <string.h>
 
 #include <boris_h/xml_driven/xmlpublisher.h>
+#include <boris_h/musicplayer.h>
 #include "display.h"
 
 //QMap<int, const char *>
@@ -58,6 +60,10 @@ const int keyDescrCount = sizeof(keyDescr) / sizeof(KeyDescr);
 Gameplay::Gameplay()
     :QWidget(0), m_state(STATE__MOL)
 {
+    strcpy(m_lastPlaying, "");
+    m_player = new boris::Musicplayer(this);
+    connect(m_player, SIGNAL(finished()), this, SLOT(onPlaybackFinished()));
+
     boris::XmlPublisher *publisher = new boris::XmlPublisher(this);
     m_display = new Display(publisher, this);
     publisher->registerSubscriber(m_display);
@@ -88,6 +94,105 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
     }
     if (!kd)
         return;
+    //if (kd->glasn)
+    if ((m_state == STATE__MOL) || (m_state == STATE__MOL_GL))
+    {
+        if ((kd->name[0] == 'ъ') || (kd->name[0] == 'ь'))
+        {
+            play(0);
+            return;
+        }
+        m_state = (kd->glasn >= 0) ? STATE__ZV_SL : STATE__ZV_SOGL; // 'й' или гласная -- согласная
+        play(kd->nameCapital);
+    }
+    else if (m_state == STATE__MOL_SOGL)
+    {
+        if (kd->glasn == 0)
+        {
+            if (kd->name[0] == 'й')
+            {
+                play(0);
+            }
+            else if (kd->name[0] == 'ъ')
+            {
+                m_state = STATE__ZV_SL;
+                play(m_lastPlaying);
+            }
+            else if (kd->name[0] == 'ь')
+            {
+                m_state = STATE__ZV_SL;
+                play(strcat(m_lastPlaying, kd->nameCapital));
+            }
+        }
+        else if (kd->glasn == 1)
+        {
+            //
+        }
+        else if (kd->glasn == -1)
+        {
+            //
+        }
+    }
+    else if (m_state == STATE__MOL_SL)
+    {
+        if (kd->glasn == 0)
+        {
+            //
+        }
+        else if (kd->glasn == 1)
+        {
+            //
+        }
+        else if (kd->glasn == -1)
+        {
+            //
+        }
+    }
+    else if (m_state == STATE__ZV_GL)
+    {
+        if (kd->glasn == 0)
+        {
+            //
+        }
+        else if (kd->glasn == 1)
+        {
+            //
+        }
+        else if (kd->glasn == -1)
+        {
+            //
+        }
+    }
+    else if (m_state == STATE__ZV_SOGL)
+    {
+        if (kd->glasn == 0)
+        {
+            //
+        }
+        else if (kd->glasn == 1)
+        {
+            //
+        }
+        else if (kd->glasn == -1)
+        {
+            //
+        }
+    }
+    else if (m_state == STATE__ZV_SL)
+    {
+        if (kd->glasn == 0)
+        {
+            //
+        }
+        else if (kd->glasn == 1)
+        {
+            //
+        }
+        else if (kd->glasn == -1)
+        {
+            //
+        }
+    }
 }
 
 void Gameplay::keyReleaseEvent(QKeyEvent *event)
@@ -99,10 +204,20 @@ void Gameplay::keyReleaseEvent(QKeyEvent *event)
 
 void Gameplay::play(const char *str)
 {
-    //
+    m_player->setSourcePath(
+                QString("/home/boris/opt/software/projects/80226_govorilka/80226_govorilka/media/allfiles/%1.wav")
+                .arg(QString::fromUtf8(str ? str : "пи"))
+                );
+    strcpy(m_lastPlaying, str);
+    m_player->play();
 }
 
 void Gameplay::stop()
+{
+    //
+}
+
+void Gameplay::onPlaybackFinished()
 {
     //
 }
