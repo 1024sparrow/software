@@ -40,6 +40,7 @@ private:
     } m_state;
     char m_lastPlaying[1024];
     boris::Musicplayer *m_player;
+    boris::Musicplayer *m_playerPi;
 
 };
 

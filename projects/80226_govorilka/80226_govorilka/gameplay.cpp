@@ -44,7 +44,7 @@ KeyDescr keyDescr[] =
     {"Л", "л", {75, 1051}, -1}, // л
     {"Д", "д", {76, 1044}, -1}, // д
     {"Ж", "ж", {59, 1046}, -1}, // ж
-    {"Э", "э", {39, 1069}, -1}, // э
+    {"Э", "э", {39, 1069}, 1}, // э
     {"Я", "я", {90, 1071}, 1}, // я
     {"Ч", "ч", {88, 1063}, -1}, // ч
     {"С", "с", {67, 1057}, -1}, // с
@@ -61,6 +61,8 @@ Gameplay::Gameplay()
     :QWidget(0), m_state(STATE__MOL)
 {
     strcpy(m_lastPlaying, "");
+    m_playerPi = new boris::Musicplayer(this);
+    m_playerPi->setSourcePath("/home/boris/opt/software/projects/80226_govorilka/80226_govorilka/media/allfiles/пи.wav");
     m_player = new boris::Musicplayer(this);
     connect(m_player, SIGNAL(finished()), this, SLOT(onPlaybackFinished()));
 
@@ -94,8 +96,7 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
     }
     if (!kd)
         return;
-    //if (kd->glasn)
-    if ((m_state == STATE__MOL) || (m_state == STATE__MOL_GL))
+    if ((m_state == STATE__MOL) || (m_state == STATE__MOL_GL) || (m_state == STATE__ZV_GL) || (m_state == STATE__ZV_SL))
     {
         if ((kd->name[0] == 'ъ') || (kd->name[0] == 'ь'))
         {
@@ -105,7 +106,7 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
         m_state = (kd->glasn >= 0) ? STATE__ZV_SL : STATE__ZV_SOGL; // 'й' или гласная -- согласная
         play(kd->nameCapital);
     }
-    else if (m_state == STATE__MOL_SOGL)
+    else if ((m_state == STATE__MOL_SOGL) || (m_state == STATE__ZV_SOGL))
     {
         if (kd->glasn == 0)
         {
@@ -126,71 +127,13 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
         }
         else if (kd->glasn == 1)
         {
-            //
+            m_state = STATE__ZV_SL;
+            play(strcat(m_lastPlaying, kd->nameCapital));
         }
         else if (kd->glasn == -1)
         {
-            //
-        }
-    }
-    else if (m_state == STATE__MOL_SL)
-    {
-        if (kd->glasn == 0)
-        {
-            //
-        }
-        else if (kd->glasn == 1)
-        {
-            //
-        }
-        else if (kd->glasn == -1)
-        {
-            //
-        }
-    }
-    else if (m_state == STATE__ZV_GL)
-    {
-        if (kd->glasn == 0)
-        {
-            //
-        }
-        else if (kd->glasn == 1)
-        {
-            //
-        }
-        else if (kd->glasn == -1)
-        {
-            //
-        }
-    }
-    else if (m_state == STATE__ZV_SOGL)
-    {
-        if (kd->glasn == 0)
-        {
-            //
-        }
-        else if (kd->glasn == 1)
-        {
-            //
-        }
-        else if (kd->glasn == -1)
-        {
-            //
-        }
-    }
-    else if (m_state == STATE__ZV_SL)
-    {
-        if (kd->glasn == 0)
-        {
-            //
-        }
-        else if (kd->glasn == 1)
-        {
-            //
-        }
-        else if (kd->glasn == -1)
-        {
-            //
+            m_state = STATE__ZV_SOGL;
+            play(kd->nameCapital);
         }
     }
 }
@@ -204,17 +147,22 @@ void Gameplay::keyReleaseEvent(QKeyEvent *event)
 
 void Gameplay::play(const char *str)
 {
-    m_player->setSourcePath(
-                QString("/home/boris/opt/software/projects/80226_govorilka/80226_govorilka/media/allfiles/%1.wav")
-                .arg(QString::fromUtf8(str ? str : "пи"))
-                );
-    strcpy(m_lastPlaying, str);
-    m_player->play();
+    if (str)
+    {
+        m_player->setSourcePath(
+                    QString("/home/boris/opt/software/projects/80226_govorilka/80226_govorilka/media/allfiles/%1.wav")
+                    .arg(QString::fromUtf8(str))
+                    );
+        strcpy(m_lastPlaying, str);
+        m_player->play();
+    }
+    else
+        m_playerPi->play();
 }
 
 void Gameplay::stop()
 {
-    //
+    m_player->stop();
 }
 
 void Gameplay::onPlaybackFinished()
