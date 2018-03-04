@@ -53,9 +53,10 @@ KeyDescr keyDescr[] =
     {"Б", "б", {44, 1041}, -1}, // б
     {"Ю", "ю", {46, 1070}, 1} // ю
 };
+const int keyDescrCount = sizeof(keyDescr) / sizeof(KeyDescr);
 
 Gameplay::Gameplay()
-    :QWidget(0)
+    :QWidget(0), m_state(STATE__MOL)
 {
     boris::XmlPublisher *publisher = new boris::XmlPublisher(this);
     m_display = new Display(publisher, this);
@@ -77,7 +78,16 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
 {
     if (event->isAutoRepeat())
         return;
-    qDebug() << "pressed "<<event->key()<<" --- "<<event->text();
+    //qDebug() << "pressed "<<event->key()<<" --- "<<event->text();
+    int k = event->key();
+    const KeyDescr *kd = 0; //({0,0,{0,0},-1});
+    for (int i = 0 ; i < keyDescrCount ; i++)
+    {
+        if ((k == keyDescr[i].codes[0]) || (k == keyDescr[i].codes[1]))
+            kd = &keyDescr[i];
+    }
+    if (!kd)
+        return;
 }
 
 void Gameplay::keyReleaseEvent(QKeyEvent *event)
@@ -86,3 +96,69 @@ void Gameplay::keyReleaseEvent(QKeyEvent *event)
         return;
     qDebug() << "\treleased' "<<event->key();*/
 }
+
+void Gameplay::play(const char *str)
+{
+    //
+}
+
+void Gameplay::stop()
+{
+    //
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
