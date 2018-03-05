@@ -1,4 +1,4 @@
-QT += sql
+QT += core widgets sql
 TARGET = bin/dic
 
 #DEFINES += STYLE_INDEVELOP
