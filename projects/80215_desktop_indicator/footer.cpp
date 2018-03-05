@@ -44,11 +44,11 @@ void Footer::onSwitched(char id)
     int num = desktopNum(id, m_mode);
     process->start(QString("wmctrl -s %1").arg(num));
     process->waitForFinished();
-    if (!usingDesktops.contains(num))
+    /*if (!usingDesktops.contains(num))
     {
         process->start(QString("gnome-terminal"));
         process->waitForFinished();
-    }
+    }*/
 
     m_currentPix = 0;
     m_cur = id;
