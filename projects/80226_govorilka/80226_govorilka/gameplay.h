@@ -6,7 +6,7 @@
 class QPaintEvent;
 class QResizeEvent;
 class QKeyEvent;
-class Display;
+class QLabel;
 namespace boris
 {
     class Musicplayer;
@@ -25,9 +25,10 @@ protected:
     void stop();
 private slots:
     void onPlaybackFinished();
+private:
+    void setLabel(const char *s);
 
 private:
-    Display *m_display;
     enum
     {
         STATE__ZV_GL, // звучит гласная
@@ -41,6 +42,7 @@ private:
     char m_lastPlaying[1024];
     boris::Musicplayer *m_player;
     boris::Musicplayer *m_playerPi;
+    QLabel *m_label;
 
 };
 

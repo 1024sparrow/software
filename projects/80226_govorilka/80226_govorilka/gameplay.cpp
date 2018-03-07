@@ -1,14 +1,16 @@
 #include "gameplay.h"
 #include <QPainter>
 #include <QKeyEvent>
+#include <QLabel>
+#include <QBoxLayout>
 #include <QDebug>
 
 #include <string.h>
 #include <string.h>
+#include <iostream>
 
 #include <boris_h/xml_driven/xmlpublisher.h>
 #include <boris_h/musicplayer.h>
-#include "display.h"
 
 //QMap<int, const char *>
 //const QMap<char, >
@@ -60,26 +62,40 @@ const int keyDescrCount = sizeof(keyDescr) / sizeof(KeyDescr);
 Gameplay::Gameplay()
     :QWidget(0), m_state(STATE__MOL)
 {
+    //m_label = new QLabel(QString::fromUtf8("<h1><span style=\"font-size: 72pt;color:blue\">К</span> <span style=\"color:red\">А</span></h1>"),this);
+    m_label = new QLabel(this);
+    m_label->setTextFormat(Qt::RichText);
+    m_label->setFont(QFont("arial", 144));
+    //m_label->setFont(QFont("arial", 288));
+
+    QBoxLayout *lay = new QVBoxLayout(this);
+    QBoxLayout *innerLay = new QHBoxLayout(this);
+    {
+        innerLay->addStretch();
+        innerLay->addWidget(m_label);
+        innerLay->addStretch();
+    }
+    lay->addStretch();
+    lay->addLayout(innerLay);
+    lay->addStretch();
+
     strcpy(m_lastPlaying, "");
     m_playerPi = new boris::Musicplayer(this);
     m_playerPi->setSourcePath("/home/boris/opt/software/projects/80226_govorilka/80226_govorilka/media/allfiles/пи.wav");
     m_player = new boris::Musicplayer(this);
     connect(m_player, SIGNAL(finished()), this, SLOT(onPlaybackFinished()));
-
-    boris::XmlPublisher *publisher = new boris::XmlPublisher(this);
-    m_display = new Display(publisher, this);
-    publisher->registerSubscriber(m_display);
 }
 
 void Gameplay::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    painter.fillRect(rect(), Qt::Dense1Pattern);
+    painter.fillRect(rect(), Qt::black);
+    //painter.fillRect(rect(), Qt::Dense1Pattern);
 }
 
 void Gameplay::resizeEvent(QResizeEvent *)
 {
-    m_display->setFixedSize(size());
+    //m_label->setFixedSize(size());
 }
 
 void Gameplay::keyPressEvent(QKeyEvent *event)
@@ -147,6 +163,7 @@ void Gameplay::keyReleaseEvent(QKeyEvent *event)
 
 void Gameplay::play(const char *str)
 {
+    setLabel(str);
     if (str)
     {
         m_player->setSourcePath(
@@ -168,6 +185,32 @@ void Gameplay::stop()
 void Gameplay::onPlaybackFinished()
 {
     //
+}
+
+void Gameplay::setLabel(const char *s)
+{
+    if (!s)
+    {
+        m_label->setText("error");
+        return;
+    }
+    QString cand;
+    for (const char *i = s ; *i != '\0'; i++)
+    {
+        for (int ii = 0 ; ii < keyDescrCount ; ii++)
+        {
+            const KeyDescr &kd = keyDescr[ii];
+            if (QString::fromUtf8(kd.nameCapital)[0] == QString::fromUtf8(i)[0])
+            {
+                cand += QString("<span style=\"color:%1\">%2</span>")
+                        //.arg("blue")
+                        .arg(kd.glasn == 0 ? "#444" : (kd.glasn > 0 ? "#800" : "#008"))
+                        .arg(kd.nameCapital);
+            }
+        }
+    }
+    cand = "<h1>" + cand + "</h1>";
+    m_label->setText(cand);
 }
 
 

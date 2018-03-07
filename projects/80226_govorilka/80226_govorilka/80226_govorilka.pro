@@ -12,9 +12,7 @@ LIBS += \
 
 SOURCES += \
     main.cpp \
-    gameplay.cpp \
-    display.cpp
+    gameplay.cpp
 
 HEADERS += \
-    gameplay.h \
-    display.h
+    gameplay.h
