@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 
     MainWindow *mw = new MainWindow();
 //    mw->show();
-    mw->showFullScreen();
+    mw->showMaximized();//FullScreen();
 
     return app.exec();
 }

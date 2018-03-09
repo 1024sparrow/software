@@ -1,7 +1,15 @@
 #!/bin/bash
 
 #apt install vim synaptic git openbox wmctrl
-apt install qtcreator mplayer
+apt install -y qtcreator mplayer gparted cmake
+apt install -y libc6:i386
+
+#install nodeJS
+apt install curl
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+apt-get install -y nodejs
+apt-get install -y build-essential
+
 
 #tmp=$(pwd)
 
