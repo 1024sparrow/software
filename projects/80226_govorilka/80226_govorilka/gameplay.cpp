@@ -120,7 +120,9 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
         return;
     if ((m_state == STATE__MOL) || (m_state == STATE__MOL_GL) || (m_state == STATE__ZV_GL) || (m_state == STATE__ZV_SL))
     {
-        if ((kd->name[0] == 'ъ') || (kd->name[0] == 'ь'))
+        //if ((kd->name[0] == 'ъ') || (kd->name[0] == 'ь'))
+        if ((QString(kd->name)[0] == QString::fromUtf8("ъ")[0]) ||
+                (QString(kd->name)[0] == QString::fromUtf8("ь")[0]))
         {
             play(0);
             return;
@@ -133,17 +135,20 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
     {
         if (kd->glasn == 0)
         {
-            if (kd->name[0] == 'й')
+            //if (kd->name[0] == 'й')
+            if (QString(kd->name)[0] == QString::fromUtf8("й")[0])
             {
                 play(0);
             }
-            else if (kd->name[0] == 'ъ')
+            //else if (kd->name[0] == 'ъ')
+            else if (QString(kd->name)[0] == QString::fromUtf8("ъ")[0])
             {
                 m_state = STATE__ZV_SL;
                 stateChanged();
                 play(m_lastPlaying);
             }
-            else if (kd->name[0] == 'ь')
+            //else if (kd->name[0] == 'ь')
+            else if (QString(kd->name)[0] == QString::fromUtf8("ь")[0])
             {
                 m_state = STATE__ZV_SL;
                 stateChanged();
@@ -151,7 +156,7 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
             }
             else
             {
-                m_debugLabel->setText("oops");
+                m_debugLabel->setText(QString("oops: %1 -- %2").arg(kd->name).arg(QString(kd->name)[0]));
             }
         }
         else if (kd->glasn == 1)
