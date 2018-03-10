@@ -27,9 +27,10 @@ private slots:
     void onPlaybackFinished();
 private:
     void setLabel(const char *s);
+    void stateChanged();
 
 private:
-    enum
+    enum State
     {
         STATE__ZV_GL, // звучит гласная
         STATE__ZV_SOGL, // звучит согласная
@@ -43,7 +44,7 @@ private:
     boris::Musicplayer *m_player;
     boris::Musicplayer *m_playerPi;
     QLabel *m_label;
-
+    QLabel *m_debugLabel;
 };
 
 #endif // GAMEPLAY_H

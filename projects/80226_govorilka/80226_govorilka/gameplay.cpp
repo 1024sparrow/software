@@ -68,6 +68,11 @@ Gameplay::Gameplay()
     m_label->setFont(QFont("arial", 144));
     //m_label->setFont(QFont("arial", 288));
 
+    m_debugLabel = new QLabel("DEBUG", this);
+    QPalette palette = m_debugLabel->palette();
+    palette.setColor(QPalette::Foreground, Qt::green);
+    m_debugLabel->setPalette(palette);
+
     QBoxLayout *lay = new QVBoxLayout(this);
     QBoxLayout *innerLay = new QHBoxLayout(this);
     {
@@ -78,6 +83,7 @@ Gameplay::Gameplay()
     lay->addStretch();
     lay->addLayout(innerLay);
     lay->addStretch();
+    lay->addWidget(m_debugLabel);
 
     strcpy(m_lastPlaying, "");
     m_playerPi = new boris::Musicplayer(this);
@@ -120,6 +126,7 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
             return;
         }
         m_state = (kd->glasn >= 0) ? STATE__ZV_SL : STATE__ZV_SOGL; // 'й' или гласная -- согласная
+        stateChanged();
         play(kd->nameCapital);
     }
     else if ((m_state == STATE__MOL_SOGL) || (m_state == STATE__ZV_SOGL))
@@ -133,22 +140,30 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
             else if (kd->name[0] == 'ъ')
             {
                 m_state = STATE__ZV_SL;
+                stateChanged();
                 play(m_lastPlaying);
             }
             else if (kd->name[0] == 'ь')
             {
                 m_state = STATE__ZV_SL;
+                stateChanged();
                 play(strcat(m_lastPlaying, kd->nameCapital));
+            }
+            else
+            {
+                m_debugLabel->setText("oops");
             }
         }
         else if (kd->glasn == 1)
         {
             m_state = STATE__ZV_SL;
+            stateChanged();
             play(strcat(m_lastPlaying, kd->nameCapital));
         }
         else if (kd->glasn == -1)
         {
             m_state = STATE__ZV_SOGL;
+            stateChanged();
             play(kd->nameCapital);
         }
     }
@@ -163,9 +178,9 @@ void Gameplay::keyReleaseEvent(QKeyEvent *event)
 
 void Gameplay::play(const char *str)
 {
-    setLabel(str);
     if (str)
     {
+        setLabel(str);
         m_player->setSourcePath(
                     QString("/home/boris/opt/software/projects/80226_govorilka/80226_govorilka/media/allfiles/%1.wav")
                     .arg(QString::fromUtf8(str))
@@ -204,13 +219,33 @@ void Gameplay::setLabel(const char *s)
             {
                 cand += QString("<span style=\"color:%1\">%2</span>")
                         //.arg("blue")
-                        .arg(kd.glasn == 0 ? "#444" : (kd.glasn > 0 ? "#800" : "#008"))
+                        .arg(kd.glasn == 0 ? "#444" : (kd.glasn > 0 ? "#f44" : "#048"))
                         .arg(kd.nameCapital);
             }
         }
     }
     cand = "<h1>" + cand + "</h1>";
     m_label->setText(cand);
+}
+
+void Gameplay::stateChanged()
+{
+    QString str = "DEBUG";
+    if (m_state == STATE__ZV_GL)
+        str = "STATE__ZV_GL";
+    else if (m_state == STATE__ZV_SOGL)
+        str = "STATE__ZV_SOGL";
+    else if (m_state == STATE__ZV_SL)
+        str = "STATE__ZV_SL";
+    else if (m_state == STATE__MOL)
+        str = "STATE__MOL";
+    else if (m_state == STATE__MOL_GL)
+        str = "STATE__MOL_GL";
+    else if (m_state == STATE__MOL_SOGL)
+        str = "STATE__MOL_SOGL";
+    else if (m_state == STATE__MOL_SL)
+        str = "STATE__MOL_SL";
+    m_debugLabel->setText(str);
 }
 
 
