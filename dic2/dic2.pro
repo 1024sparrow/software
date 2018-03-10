@@ -16,3 +16,6 @@ HEADERS += \
 
 RESOURCES += \
     rc.qrc
+
+target.path = /usr/local/bin/
+INSTALLS += target
