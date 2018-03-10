@@ -145,7 +145,7 @@ void Gameplay::keyPressEvent(QKeyEvent *event)
             {
                 m_state = STATE__ZV_SL;
                 stateChanged();
-                play(m_lastPlaying);
+                play(strcat(m_lastPlaying, kd->nameCapital));
             }
             //else if (kd->name[0] == 'ь')
             else if (QString(kd->name)[0] == QString::fromUtf8("ь")[0])
@@ -237,19 +237,19 @@ void Gameplay::stateChanged()
 {
     QString str = "DEBUG";
     if (m_state == STATE__ZV_GL)
-        str = "STATE__ZV_GL";
+        str = "STATE__ZV_GL: звучит гласная";
     else if (m_state == STATE__ZV_SOGL)
-        str = "STATE__ZV_SOGL";
+        str = "STATE__ZV_SOGL: звучит согласная";
     else if (m_state == STATE__ZV_SL)
-        str = "STATE__ZV_SL";
+        str = "STATE__ZV_SL: звучит слог";
     else if (m_state == STATE__MOL)
-        str = "STATE__MOL";
+        str = "STATE__MOL: не звучит.";
     else if (m_state == STATE__MOL_GL)
-        str = "STATE__MOL_GL";
+        str = "STATE__MOL_GL: не звучит. До этого звучала гласная.";
     else if (m_state == STATE__MOL_SOGL)
-        str = "STATE__MOL_SOGL";
+        str = "STATE__MOL_SOGL: не звучит. До этого звучала согласная.";
     else if (m_state == STATE__MOL_SL)
-        str = "STATE__MOL_SL";
+        str = "STATE__MOL_SL: не звучит. До этого звучал слог.";
     m_debugLabel->setText(str);
 }
 
