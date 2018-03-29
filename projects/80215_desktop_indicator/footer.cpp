@@ -24,7 +24,7 @@ Footer::Footer()
     //m_comandListener->moveToThread(&m_comandListenerThread);
 
     QSize SZ = QApplication::desktop()->availableGeometry().size();
-    setFixedSize(SZ.width(), Footer::H);
+    setFixedSize(SZ.width(), Footer::H + 1);
     //move(0, QApplication::desktop()->screenGeometry().height());// - Footer::H);
     move(QPoint(0, QApplication::desktop()->screenGeometry().height() - Footer::H));
 
