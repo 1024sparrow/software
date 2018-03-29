@@ -13,7 +13,7 @@ QColor colors[] = {
     0x4488ff,
     //0xff8800,
     //Qt::green,
-    Qt::green,
+    0x004444,
     Qt::yellow,
     Qt::red
 };
@@ -35,8 +35,8 @@ const int pointsMutableBaseCount = 23; // 26 - fixedCount
 PointDescr pointsMutableBase[] = {
     {'Q',0,0,0,0},
     {'W',1,1,0,0},
-    {'E',2,2,0,1},
-    {'R',3,3,0,1},
+    {'E',2,2,0,3},
+    {'R',3,3,0,3},
     {'T',4,5,0,2},
     {'Y',5,6,0,2},
     {'U',6,8,0,3},
@@ -45,20 +45,20 @@ PointDescr pointsMutableBase[] = {
     {'P',9,11,0,3},
     {'A',10,0,1,0},
     {'S',11,1,1,0},
-    {'D',12,2,1,1},
-    {'F',13,3,1,1},
+    {'D',12,2,1,3},
+    {'F',13,3,1,3},
     {'G',14,5,1,2},
     {'H',15,6,1,2},
-    {'J',16,8,1,0},//fixed
-    {'K',17,9,1,0},//fixed
+    {'J',16,8,1,1},//fixed
+    {'K',17,9,1,1},//fixed
     {'L',18,11,1,2},
     {'Z',19,0,2,0},
     {'X',20,1,2,0},
-    {'C',21,2,2,1},
-    {'V',22,3,2,1},
+    {'C',21,2,2,3},
+    {'V',22,3,2,3},
     {'B',23,5,2,2},
     {'N',24,6,2,2},
-    {'M',25,8,2,0},//fixed
+    {'M',25,8,2,1},//fixed
 };
 int pointsCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr);
 //QSet<int> pointsFixed = QSet<int>()<<16<<17<<25;
