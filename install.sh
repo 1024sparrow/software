@@ -3,6 +3,7 @@
 apt install -y mc vim synaptic git openbox wmctrl
 apt install -y python python-pip python-virtualenv
 apt install -y qtcreator qt5-qmake qt5-doc qt5-default qtmultimedia5-dev
+apt install -y qml qmlscene libqt5qml-graphicaleffects
 apt install -y mplayer gparted cmake
 apt install -y libc6:i386 npm
 
