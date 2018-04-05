@@ -13,10 +13,8 @@ apt-get install -y nodejs
 apt-get install -y build-essential
 
 # install compiler
-git clone https://github.com/1024sparrow/compiler.git
 cd compiler
-npm install
-sudo ln -s $(pwd)/compile.js /usr/local/bin/compile
+ln -s $(pwd)/compile.js /usr/local/bin/compile
 cd ..
 
 cp clone_terminal /usr/local/bin/

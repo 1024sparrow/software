@@ -24,3 +24,9 @@ git config --global user.name "$git_username"
 echo -n "На какую электронную почту писать в случае вопросов? "
 read git_email
 git config --global user.email "$git_email"
+
+# install compiler
+git clone https://github.com/1024sparrow/compiler.git
+cd compiler
+npm install
+cd ..
