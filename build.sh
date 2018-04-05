@@ -16,3 +16,11 @@ cd projects/80215_desktop_indicator
 qmake && make
 cd ../80226_govorilka
 qmake && make
+
+echo; echo Настраиваем git
+echo -n "Как вас зовут? "
+read git_username
+git config --global user.name "$git_username"
+echo -n "На какую электронную почту писать в случае вопросов? "
+read git_email
+git config --global user.email "$git_email"
