@@ -14,9 +14,7 @@ apt-get install -y nodejs
 apt-get install -y build-essential
 
 # install compiler
-cd compiler
-ln -s $(pwd)/compile.js /usr/local/bin/compile
-cd ..
+ln -s $(pwd)/compiler/compile.js /usr/local/bin/compile
 
 cp clone_terminal /usr/local/bin/
 ln -s "$(pwd)/projects/80215_desktop_indicator/80215_desktop_indicator" /usr/local/bin/80215_desktop_indicator
