@@ -6,3 +6,5 @@ for i in $xx
 do
     apt install -y libqt4-$i
 done
+apt install -y libqtwebkit-dev 
+apt install -y libphonon4 libphonon-dev
