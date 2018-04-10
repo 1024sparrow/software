@@ -116,6 +116,6 @@ void Footer::timerEvent(QTimerEvent *te)
     m_currentPix = ++m_currentPix % 4;
     if (isVisible())
         repaint();
-    if (m_currentPix == 3)
-        updatePixmaps();
+    //if (m_currentPix == 3)
+    //    updatePixmaps();
 }
