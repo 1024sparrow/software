@@ -71,7 +71,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1_default="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1_default"
     ;;
 *)
     ;;
@@ -118,13 +118,14 @@ if ! shopt -oq posix; then
   fi
 fi
 export PATH="/home/boris/da/opt/babel-register/node_modules/.bin:$PATH"
+
 for i in $(ls -1 ~/.bash_modes)
 do
     if [ -d ~/.bash_modes/$i ];then
-        alias bash_mode_$i=". ~/.bash_modes/\$BASH_MODE/bash_leave;. ~/.bash_modes/$i/bash_init;export PS1=\"\033[1;34m$i\033[00m-$PS1_default\";echo \"Активирован режим консоли $i\";if [ -e ~/.bash_modes/$i/descr_long ]; then cat ~/.bash_modes/$i/descr_long; fi; export BASH_MODE=$i"
+        alias bash_mode_$i=". ~/.bash_modes/\$BASH_MODE/bash_leave;. ~/.bash_modes/$i/bash_init;PS1='\033[1;34m$i\033[00m-$PS1_default';echo \"Активирован режим консоли $i\";if [ -e ~/.bash_modes/$i/descr_long ]; then cat ~/.bash_modes/$i/descr_long; fi; export BASH_MODE=$i"
     fi
 done
-alias bash_mode_default=". ~/.bash_modes/\$BASH_MODE/bash_leave;. ~/.bash_modes/default/bash_init;export PS1=\"$PS1_default\";echo \"Активирован режим консоли default\";export BASH_MODE=default"
+alias bash_mode_default=". ~/.bash_modes/\$BASH_MODE/bash_leave;. ~/.bash_modes/default/bash_init;PS1='$PS1_default';echo \"Активирован режим консоли default\";export BASH_MODE=default"
 
 BASH_MODE=default
 bash_mode_default
