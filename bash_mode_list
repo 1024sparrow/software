@@ -1,0 +1,9 @@
+#!/bin/bash
+# Переключалка режимов консоли: для сборки под андроид, для кросскомпиляции под windows и т.д.
+
+for i in $(ls -1 ~/.bash_modes)
+do
+    if [ -d ~/.bash_modes/$i ]; then
+        echo "$i - $(cat ~/.bash_modes/$i/descr_short)"
+    fi
+done
