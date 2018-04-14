@@ -1,5 +1,16 @@
 #!/bin/bash
 
+if [ $(id -u) -eq 0 ]
+then
+    echo Этот скрипт не надо запускать под рутом. Запустите его под обычным пользователем.
+    exit 1
+fi
+if [ ! -e config ]
+then
+    echo Перед тем, как запускать этот скрипт, необходимо выполнить \"sudo ./install.sh\"
+    exit 1
+fi
+
 for i in $(cat config)
 do
     case "$i" in
