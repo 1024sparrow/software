@@ -2,13 +2,13 @@
 
 echo "Сейчас будут выведены части системы, которые скрипт может установить. Если установку надо пропустить, введите что-нибудь перед тем как нажать ENTER"
 echo -n "Настроить git (имя пользователя и e-mail)"
+echo "INSTALL_DEFAULT" > config
 read SETUP_GIT
 if [ -z $SETUP_GIT ]; then
     echo "SETUP_GIT" >> config
 fi
 echo -n "openbox с 72 рабочими столами"
 read INSTALL_OPENBOX
-echo "INSTALL_DEFAULT" > config
 if [ -z $INSTALL_OPENBOX ]; then
     echo "INSTALL_OPENBOX" >> config
 fi
