@@ -1,0 +1,2 @@
+Используйте $MYANDROID_GEN для генерации скрипта для сборки проекта под android.
+Файлом проекта под android считается файл AndroidManifest.xml
