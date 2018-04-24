@@ -38,6 +38,7 @@ apt install -y python3 python3-pip python3-virtualenv
 apt install -y qtcreator qt5-qmake qt5-doc qt5-default qtmultimedia5-dev
 apt install -y qml qmlscene libqt5qml-graphicaleffects
 apt install -y mplayer gparted cmake
+apt install kdelibs5-plugins kdelibs5-data oxygen-icon-theme kolourpaint4
 
 if [ -z $INSTALL_TRALIVA_COMPILE ];then
     apt install -y libc6:i386 npm
