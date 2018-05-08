@@ -31,6 +31,7 @@ do
             qmake && make
             cd ../80226_govorilka
             qmake && make
+            cd ../..
         ;;
         INSTALL_TRALIVA_COMPILE)
             # install compiler
