@@ -13,9 +13,10 @@ QColor colors[] = {
     0x4488ff,
     //0xff8800,
     //Qt::green,
-    0x004444,
-    Qt::yellow,
-    Qt::red
+    //0x004444,
+    0x4488ff,
+    0xffff80,
+    0xff8080
 };
 //QColor colorGray(16,16,16);
 QColor colorGray(32,32,32);
@@ -33,7 +34,7 @@ struct PointDescr
 const int fixedCount = 3; // число рабочих столов, которые не переключаются между группами рабочих столов
 const int pointsMutableBaseCount = 23; // 26 - fixedCount
 PointDescr pointsMutableBase[] = {
-    {'Q',0,0,0,0},
+    /*{'Q',0,0,0,0},
     {'W',1,1,0,0},
     {'E',2,2,0,3},
     {'R',3,3,0,3},
@@ -59,6 +60,34 @@ PointDescr pointsMutableBase[] = {
     {'B',23,5,2,2},
     {'N',24,6,2,2},
     {'M',25,8,2,1},//fixed
+    */
+
+    {'Q',0,0,0,0},
+    {'W',1,1,0,0},
+    {'E',2,2,0,3},
+    {'R',3,3,0,3},
+    {'T',4,4,0,2},
+    {'Y',5,5,0,2},
+    {'U',6,6,0,3},
+    {'I',7,7,0,3},
+    {'O',8,8,0,3},
+    {'P',9,9,0,3},
+    {'A',10,0,1,0},
+    {'S',11,1,1,0},
+    {'D',12,2,1,3},
+    {'F',13,3,1,3},
+    {'G',14,4,1,2},
+    {'H',15,5,1,2},
+    {'J',16,6,1,1},//fixed
+    {'K',17,7,1,1},//fixed
+    {'L',18,8,1,2},
+    {'Z',19,0,2,0},
+    {'X',20,1,2,0},
+    {'C',21,2,2,3},
+    {'V',22,3,2,3},
+    {'B',23,4,2,2},
+    {'N',24,5,2,2},
+    {'M',25,6,2,1},//fixed
 };
 int pointsCount = sizeof(pointsMutableBase) / sizeof(struct PointDescr);
 //QSet<int> pointsFixed = QSet<int>()<<16<<17<<25;
@@ -157,7 +186,7 @@ void Footer::updatePixmaps()
         {
             for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
             {
-                imgGray.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colorGray.rgb());
+                imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colorGray.rgb());
             }
         }
     }
@@ -178,8 +207,8 @@ void Footer::updatePixmaps()
                 {
                     for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                     {
-                        //img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, qRgb(255,255,255));
-                        img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                        //img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, qRgb(255,255,255));
+                        img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                     }
                 }
             }
@@ -202,7 +231,7 @@ void Footer::updatePixmaps()
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                         {
-                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                            img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                         }
                     }
                 }
@@ -215,7 +244,7 @@ void Footer::updatePixmaps()
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                         {
-                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                            img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                         }
                     }
                 }
@@ -237,7 +266,7 @@ void Footer::updatePixmaps()
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                         {
-                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                            img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                         }
                     }
                 }
@@ -250,7 +279,7 @@ void Footer::updatePixmaps()
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                         {
-                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                            img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                         }
                     }
                 }
@@ -261,7 +290,7 @@ void Footer::updatePixmaps()
 //                {
 //                    for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
 //                    {
-//                        img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+//                        img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
 //                    }
 //                }
 //            }
@@ -282,7 +311,7 @@ void Footer::updatePixmaps()
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                         {
-                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                            img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                         }
                     }
                 }
@@ -295,7 +324,7 @@ void Footer::updatePixmaps()
                     {
                         for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
                         {
-                            img.setPixel(point.x * POINT_SIZE + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
+                            img.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colors[point.colorIndex].rgb());
                         }
                     }
                 }
