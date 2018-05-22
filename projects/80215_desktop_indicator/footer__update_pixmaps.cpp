@@ -18,15 +18,8 @@ QColor colors[] = {
     0xffff80,
     0xff8080
 };
-QColor bgColors[] = {
-    0x000001,
-    0x000001,
-    0x000001,
-    0x404040
-};
 //QColor colorGray(16,16,16);
-//QColor colorGray(32,32,32);
-QColor colorGray(64,64,64);
+QColor colorGray(32,32,32);
 
 // Характеристики точки, описывающей рабочий стол
 struct PointDescr
@@ -189,14 +182,11 @@ void Footer::updatePixmaps()
     for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
     {
         struct PointDescr point = pointsMutableBase[iPoint];
-        //imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + (POINT_SIZE/2 ), point.y * POINT_SIZE + (POINT_SIZE/2 ), colorGray.rgb());
-        //imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + (POINT_SIZE/2 ), point.y * POINT_SIZE + (POINT_SIZE/2 ), colors[point.colorIndex].rgb());
         for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
         {
             for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
             {
-                //imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colorGray.rgb());
-                imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, bgColors[point.colorIndex].rgb());
+                imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colorGray.rgb());
             }
         }
     }
