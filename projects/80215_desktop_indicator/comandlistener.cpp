@@ -17,7 +17,7 @@ ComandListener::ComandListener(QObject *parent)
 void ComandListener::run()
 {
     FILE *fp;
-    fp=fopen("/home/boris/.desktop_indicator.fifo", "r");
+    fp=fopen("/home/user/.desktop_indicator.fifo", "r");
     if (fp)
     {
         emit sgnInitialize();

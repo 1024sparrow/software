@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/boris/da/pro/traliva/src'
-let g:netrw_dirhist_2='/home/boris/da/pro/traliva/src/body'
-let g:netrw_dirhist_3='/home/boris/da/pro/traliva/src/body/widgets'
-let g:netrw_dirhist_4='/home/boris/da/pro/traliva_kit/src/js'
-let g:netrw_dirhist_5='/home/boris/da/pro/traliva_kit/src/js/template'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/user/da/pro/platforma-2021/platform-apps/user/monitoring_distribution/front'
+let g:netrw_dirhist_2='/home/user/da/pro/platforma-2021/platform-apps/user/monitoring_distribution'
+let g:netrw_dirhist_3='/home/user/da/pro/platforma-2021/platform-apps/user'
+let g:netrw_dirhist_4='/home/user/da/pro/platforma-2021/platform-apps/user/monit_mobilization_mission'
+let g:netrw_dirhist_5='/home/user/da/pro/platforma-2021/platform-apps/user/monit_mobilization_mission/front'
+let g:netrw_dirhist_6='/home/user/da/pro/platforma-2021/platform-apps/user/monit_mobilization_mission/front/js'

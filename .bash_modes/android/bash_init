@@ -1,2 +1,2 @@
-export MYANDROID=/home/boris/opt/myandroid
-export MYANDROID_GEN=/home/boris/opt/myandroid/generate_android_build_script.sh
+export MYANDROID=/home/user/opt/myandroid
+export MYANDROID_GEN=/home/user/opt/myandroid/generate_android_build_script.sh

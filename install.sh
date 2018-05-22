@@ -17,7 +17,7 @@ function install()
 	for i in $1
 	do
 		echo "Устанавливается пакет $i"
-		apt-cache show $i > /dev/null && apt-get install > /dev/null $i || dep_exit "Пакет $i не найден в репозитории"
+		apt-cache show $i > /dev/null && apt-get install -y $i > /dev/null || dep_exit "Пакет $i не найден в репозитории"
 	done
 }
 
@@ -39,7 +39,7 @@ if [ -z $INSTALL_TRALIVA_COMPILE ]; then
     echo "INSTALL_TRALIVA_COMPILE" >> config
 fi
 
-install "mc vim synaptic git"
+install "mc vim-console synaptic git"
 
 if [ -z $INSTALL_OPENBOX ];then
     install openbox wmctrl kolourpaint4
@@ -48,20 +48,20 @@ if [ -z $INSTALL_OPENBOX ];then
     ln -s "$(pwd)/projects/80215_desktop_indicator/80215_desktop_indicator" /usr/local/bin/80215_desktop_indicator
 fi
 
-install "python python-pip python-virtualenv"
-install "python3 python3-pip python3-virtualenv"
-install "qtcreator qt5-qmake qt5-doc qt5-default qtmultimedia5-dev"
-install "qml qmlscene libqt5qml-graphicaleffects"
-install "mplayer gparted cmake"
-install "kdelibs5-plugins kdelibs5-data oxygen-icon-theme kolourpaint4"
+install "python python-module-pip python-module-virtualenv"
+install "python3 python3-module-pip python3-module-virtualenv"
+install "qt-creator qt5-base-devel qt5-base-doc libqt5-multimedia"
+install "libqt5-qml qt5-graphicaleffects"
+install "gparted cmake"
+#install kde4-kolourpaint # какие-то проблемы с установкой в AltLinux-е: наверное, данный пакет битый в локальном зеркале репозитория
 
 if [ -z $INSTALL_TRALIVA_COMPILE ];then
-    install libc6:i386 npm
+    #install libc6:i386 npm
     # install nodeJS
-    install curl
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - || dep_exit "fail..."
-    install nodejs
-    install build-essential
+    #install curl
+    #curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - || dep_exit "fail..."
+    #install nodejs
+    #install build-essential
 
     # install compiler
     rm /usr/local/bin/compile
