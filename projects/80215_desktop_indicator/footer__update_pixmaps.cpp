@@ -20,6 +20,7 @@ QColor colors[] = {
 };
 //QColor colorGray(16,16,16);
 QColor colorGray(32,32,32);
+//QColor colorGray(64,64,64);
 
 // Характеристики точки, описывающей рабочий стол
 struct PointDescr
@@ -182,13 +183,15 @@ void Footer::updatePixmaps()
     for (int iPoint = 0 ; iPoint < pointsCount ; iPoint++)
     {
         struct PointDescr point = pointsMutableBase[iPoint];
-        for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
+        imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + (POINT_SIZE/2 ), point.y * POINT_SIZE + (POINT_SIZE/2 ), colorGray.rgb());
+        //imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + (POINT_SIZE/2 ), point.y * POINT_SIZE + (POINT_SIZE/2 ), colors[point.colorIndex].rgb());
+        /*for (int x = POINT_PADDING ; x < POINT_SIZE ; x++)
         {
             for (int y = POINT_PADDING ; y < POINT_SIZE ; y++)
             {
                 imgGray.setPixel(point.x * POINT_SIZE + point.y * (POINT_SIZE/3) + x, point.y * POINT_SIZE + y, colorGray.rgb());
             }
-        }
+        }*/
     }
     QImage img;
 
