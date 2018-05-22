@@ -219,12 +219,12 @@
     </keybind>
     <keybind key="C-A-Left">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__mode_backward</command>
+        <command>bash /home/boris/.desktop_indicator__mode_backward</command>
       </action>
     </keybind>
     <keybind key="C-A-Right">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__mode_forward</command>
+        <command>bash /home/boris/.desktop_indicator__mode_forward</command>
       </action>
     </keybind>
 
@@ -278,132 +278,132 @@
         <to>1</to>
       </action>-->
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop Q</command>
+        <command>bash /home/boris/.desktop_indicator__desktop Q</command>
       </action>
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop W</command>
+        <command>bash /home/boris/.desktop_indicator__desktop W</command>
       </action>
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop E</command>
+        <command>bash /home/boris/.desktop_indicator__desktop E</command>
       </action>
     </keybind>
     <keybind key="W-r">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop R</command>
+        <command>bash /home/boris/.desktop_indicator__desktop R</command>
       </action>
     </keybind>
     <keybind key="W-t">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop T</command>
+        <command>bash /home/boris/.desktop_indicator__desktop T</command>
       </action>
     </keybind>
     <keybind key="W-y">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop Y</command>
+        <command>bash /home/boris/.desktop_indicator__desktop Y</command>
       </action>
     </keybind>
     <keybind key="W-u">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop U</command>
+        <command>bash /home/boris/.desktop_indicator__desktop U</command>
       </action>
     </keybind>
     <keybind key="W-i">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop I</command>
+        <command>bash /home/boris/.desktop_indicator__desktop I</command>
       </action>
     </keybind>
     <keybind key="W-o">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop O</command>
+        <command>bash /home/boris/.desktop_indicator__desktop O</command>
       </action>
     </keybind>
     <keybind key="W-p">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop P</command>
+        <command>bash /home/boris/.desktop_indicator__desktop P</command>
       </action>
     </keybind>
     <keybind key="W-a">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop A</command>
+        <command>bash /home/boris/.desktop_indicator__desktop A</command>
       </action>
     </keybind>
     <keybind key="W-s">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop S</command>
+        <command>bash /home/boris/.desktop_indicator__desktop S</command>
       </action>
     </keybind>
     <keybind key="W-d">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop D</command>
+        <command>bash /home/boris/.desktop_indicator__desktop D</command>
       </action>
     </keybind>
     <keybind key="W-f">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop F</command>
+        <command>bash /home/boris/.desktop_indicator__desktop F</command>
       </action>
     </keybind>
     <keybind key="W-g">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop G</command>
+        <command>bash /home/boris/.desktop_indicator__desktop G</command>
       </action>
     </keybind>
     <keybind key="W-h">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop H</command>
+        <command>bash /home/boris/.desktop_indicator__desktop H</command>
       </action>
     </keybind>
     <keybind key="W-j">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop J</command>
+        <command>bash /home/boris/.desktop_indicator__desktop J</command>
       </action>
     </keybind>
     <keybind key="W-k">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop K</command>
+        <command>bash /home/boris/.desktop_indicator__desktop K</command>
       </action>
     </keybind>
     <keybind key="W-l">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop L</command>
+        <command>bash /home/boris/.desktop_indicator__desktop L</command>
       </action>
     </keybind>
     <keybind key="W-z">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop Z</command>
+        <command>bash /home/boris/.desktop_indicator__desktop Z</command>
       </action>
     </keybind>
     <keybind key="W-x">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop X</command>
+        <command>bash /home/boris/.desktop_indicator__desktop X</command>
       </action>
     </keybind>
     <keybind key="W-c">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop C</command>
+        <command>bash /home/boris/.desktop_indicator__desktop C</command>
       </action>
     </keybind>
     <keybind key="W-v">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop V</command>
+        <command>bash /home/boris/.desktop_indicator__desktop V</command>
       </action>
     </keybind>
     <keybind key="W-b">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop B</command>
+        <command>bash /home/boris/.desktop_indicator__desktop B</command>
       </action>
     </keybind>
     <keybind key="W-n">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop N</command>
+        <command>bash /home/boris/.desktop_indicator__desktop N</command>
       </action>
     </keybind>
     <keybind key="W-m">
       <action name="Execute">
-        <command>bash /home/user/.desktop_indicator__desktop M</command>
+        <command>bash /home/boris/.desktop_indicator__desktop M</command>
       </action>
     </keybind>
     <!-- Keybindings for windows -->
@@ -427,7 +427,7 @@
     <!-- Take a screenshot of the current window with gnome-screenshot when Alt+Print are pressed -->
     <keybind key="A-Print">
       <action name="Execute">
-        <command>mate-screenshot -w</command>
+        <command>gnome-screenshot -w</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
@@ -486,11 +486,11 @@
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>terminal</name>
+          <name>x-terminal-emulator</name>
         </startupnotify>
         <!--      <command>x-terminal-emulator</command> -->
         <!-- <command>gnome-terminal -full-screen</command> -->
-        <command>mate-terminal</command>
+        <command>gnome-terminal</command>
       </action>
     </keybind>
     <keybind key="W-2">
@@ -510,13 +510,13 @@
     </keybind>
     <keybind key="W-space">
       <action name="Execute">
-        <command>chromium</command>
+        <command>x-www-browser</command>
       </action>
     </keybind>
     <!-- Launch gnome-screenshot when Print is pressed -->
     <keybind key="Print">
       <action name="Execute">
-        <command>mate-screenshot</command>
+        <command>gnome-screenshot</command>
       </action>
     </keybind>
   </keyboard>

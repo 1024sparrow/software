@@ -28,9 +28,9 @@ do
             bash generates_desktop_home_files_for_desktop_indicator.sh
 
             cd projects/80215_desktop_indicator
-            qmake-qt5 && make
-            #cd ../80226_govorilka
-            #qmake-qt5 && make
+            qmake && make
+            cd ../80226_govorilka
+            qmake && make
             cd ../..
         ;;
         INSTALL_TRALIVA_COMPILE)
