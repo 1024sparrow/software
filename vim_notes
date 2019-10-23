@@ -1,0 +1,13 @@
+https://stackoverflow.com/questions/35569562/how-to-catch-keyboard-layout-change-event-and-get-current-new-keyboard-layout-on
+
+All indication - via bottom line (where is desktop indicator)
+
+F2  - switch to console
+F3  - 
+F4  - h <--> c
+
+# Indentations
+F6  - toggle indentation between TABS and 4SPACES
+
+F9  - toggle space-symbols displaying (enabled by default)
+F10 - toggle row-numbers displaying (hide extra symbols), toggle space-symbols if enabled
