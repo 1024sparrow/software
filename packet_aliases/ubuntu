@@ -1,0 +1,13 @@
+packet_gcc="gcc build-essential" # ?? I don't know is it needed
+packet_python2="python python-pip python-virtualenv"
+packet_python3="python3 python3-pip python3-virtualenv"
+packet_qtSdk="qtcreator qt5-qmake qt5-doc qt5-default qtmultimedia5-dev qml qmlscene"
+packet_mplayer="mplayer"
+packet_gparted=gparted
+packet_cmake=cmake
+packet_feh=feh
+packet_gimp=gimp
+packet_kolourpaint="kdelibs5-plugins kdelibs5-data oxygen-icon-theme kolourpaint4"
+packet_nodejs="libc6:i386 nodejs npm build-essential" # curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - || dep_exit "fail..."
+packet_wmctrl="wmctrl"
+packet_openbox="openbox"
